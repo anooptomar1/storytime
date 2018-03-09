@@ -1,0 +1,11 @@
+framework module Dip {
+  umbrella header "Dip.h"
+
+  export *
+  module * { export * }
+}
+
+module Dip.Swift {
+    header "Dip-Swift.h"
+    requires objc
+}

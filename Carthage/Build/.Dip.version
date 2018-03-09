@@ -1,0 +1,9 @@
+{
+  "commitish" : "6.0.0",
+  "iOS" : [
+    {
+      "name" : "Dip",
+      "hash" : "4f25b2a061b96f4fa7eb3d2d9c352f7d3500a3f82caf68819580cb3680d1db2a"
+    }
+  ]
+}
