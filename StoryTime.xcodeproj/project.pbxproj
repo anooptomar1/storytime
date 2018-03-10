@@ -30,23 +30,23 @@
 		589241603A69793582411744 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924DE6B2F419755D0B2AA4 /* Coordinator.swift */; };
 		58924236E425D54CBD310BBB /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589240700EF7A49B5CFED7BB /* DashboardViewModel.swift */; };
 		58924267D60714368331015C /* CAAnimationGroup+KeyFrameAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589247EEB279F16BE9BE71C2 /* CAAnimationGroup+KeyFrameAnimation.swift */; };
+		589243B18E840E818E122AC7 /* ArViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924419F285F14699FF994C /* ArViewController.swift */; };
 		5892448598922C693409E6BB /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 58924548AB946F35C90758D6 /* Cartfile */; };
 		589244FB8BC178A2D95CB4D7 /* StoryTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924D3132A0786120BFA2F7 /* StoryTimeViewController.swift */; };
 		589245C3928029BFD9547633 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 589248566B2936657F96A716 /* Assets.xcassets */; };
 		58924686A507D0932E5A41BD /* StoryTimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924E17925959B81C88F014 /* StoryTimeUITests.swift */; };
 		58924700B1C1169865352176 /* PrinterServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924987B0E864A88FF51DDE /* PrinterServiceImpl.swift */; };
+		589247922010B98C82A7EC40 /* ArCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5892440CD46B109F20681088 /* ArCoordinator.swift */; };
+		589247E77CD827AB5E374DDC /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5892446192DBF8CA0F3D230F /* DashboardCoordinator.swift */; };
 		589247F5E90B52CDCF8B32C7 /* Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5892450F83065E6065316272 /* Printer.swift */; };
 		589248F852661591C132E8A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 589244F6DEE26E0032435511 /* LaunchScreen.storyboard */; };
 		58924924531D3F1BAEC17691 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58924D8D5C223F8BC36E52AB /* Main.storyboard */; };
-		5892495EAB9242CEDD67A271 /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5892400CA3FF4FFE159DA9AE /* DashboardCoordinator.swift */; };
-		58924988D8112223E28A8FF4 /* ArCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924FD4D3B001B12BFF8EBA /* ArCoordinator.swift */; };
 		589249DD41012C2E09EC170D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5892488206AEA5B79C802620 /* Router.swift */; };
 		58924AC363EAAC1063FFA44B /* ViewControllerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924CCE43F3C3E97F7E2CD8 /* ViewControllerRouter.swift */; };
 		58924B4C9DC25D2923D32348 /* StoryTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589249E29BD7A7127D852F50 /* StoryTimeTests.swift */; };
 		58924B6C7FA73D327A4513CD /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924ACA8E4AEFAE047FAACE /* DashboardViewController.swift */; };
 		58924D0DA60CE656CE86818D /* PrinterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589248482DF3537395809E8C /* PrinterService.swift */; };
 		58924E4062C80EAF002E7C85 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924440816527BADEF204C3 /* ViewModel.swift */; };
-		58924F63A264309ECEFCD97B /* ArViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924328751E25882A07AC4D /* ArViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,12 +100,13 @@
 		08EEF958204B73C800386A1D /* CocoaLumberjackSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjackSwift.framework; path = Carthage/Build/iOS/CocoaLumberjackSwift.framework; sourceTree = SOURCE_ROOT; };
 		08EEF959204B73C800386A1D /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = SOURCE_ROOT; };
 		08EEF95A204B73C800386A1D /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = SOURCE_ROOT; };
-		5892400CA3FF4FFE159DA9AE /* DashboardCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
 		589240700EF7A49B5CFED7BB /* DashboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		589241E46E9619A8899069C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		58924231CB9B57FC33ACA370 /* StoryTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoryTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		58924328751E25882A07AC4D /* ArViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArViewController.swift; sourceTree = "<group>"; };
+		5892440CD46B109F20681088 /* ArCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArCoordinator.swift; sourceTree = "<group>"; };
+		58924419F285F14699FF994C /* ArViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArViewController.swift; sourceTree = "<group>"; };
 		58924440816527BADEF204C3 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		5892446192DBF8CA0F3D230F /* DashboardCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
 		58924486D06A6ED320F28AD3 /* StoryTimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoryTimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		589244C56D3D7665F451E8CA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		589244E2B5D422DC1136CF51 /* StoryTime-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StoryTime-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -133,7 +134,6 @@
 		58924E00C23CDBC0539FDDB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		58924E17925959B81C88F014 /* StoryTimeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTimeUITests.swift; sourceTree = "<group>"; };
 		58924E60168033E141254530 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		58924FD4D3B001B12BFF8EBA /* ArCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,9 +278,7 @@
 		58924CBE2732A398E1DC609F /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				5892400CA3FF4FFE159DA9AE /* DashboardCoordinator.swift */,
 				58924FCDF0B6217FCC5A7341 /* Dashboard */,
-				58924FD4D3B001B12BFF8EBA /* ArCoordinator.swift */,
 				58924FF992E6F234796CAFB7 /* AR */,
 			);
 			path = Application;
@@ -297,7 +295,6 @@
 				589247B7856AD90E73ED864B /* AppDelegate.swift */,
 				58924D8D5C223F8BC36E52AB /* Main.storyboard */,
 				589246470C6223753830361F /* art.scnassets */,
-				58924328751E25882A07AC4D /* ArViewController.swift */,
 				58924B7F03B5E378E6D62499 /* utility */,
 				58924FA7B28DEDC6286714A9 /* Service */,
 				589240B569D3A435E70E1C47 /* UI */,
@@ -350,6 +347,7 @@
 			children = (
 				589240700EF7A49B5CFED7BB /* DashboardViewModel.swift */,
 				58924ACA8E4AEFAE047FAACE /* DashboardViewController.swift */,
+				5892446192DBF8CA0F3D230F /* DashboardCoordinator.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -357,6 +355,8 @@
 		58924FF992E6F234796CAFB7 /* AR */ = {
 			isa = PBXGroup;
 			children = (
+				5892440CD46B109F20681088 /* ArCoordinator.swift */,
+				58924419F285F14699FF994C /* ArViewController.swift */,
 			);
 			path = AR;
 			sourceTree = "<group>";
@@ -537,12 +537,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				58924156F3BDB14709796C4A /* AppDelegate.swift in Sources */,
-				58924F63A264309ECEFCD97B /* ArViewController.swift in Sources */,
 				58924267D60714368331015C /* CAAnimationGroup+KeyFrameAnimation.swift in Sources */,
 				58924D0DA60CE656CE86818D /* PrinterService.swift in Sources */,
 				58924700B1C1169865352176 /* PrinterServiceImpl.swift in Sources */,
 				589241603A69793582411744 /* Coordinator.swift in Sources */,
-				5892495EAB9242CEDD67A271 /* DashboardCoordinator.swift in Sources */,
 				589249DD41012C2E09EC170D /* Router.swift in Sources */,
 				58924AC363EAAC1063FFA44B /* ViewControllerRouter.swift in Sources */,
 				589240E00F176508B10370EE /* NavigationViewControllerRouter.swift in Sources */,
@@ -552,7 +550,9 @@
 				58924B6C7FA73D327A4513CD /* DashboardViewController.swift in Sources */,
 				589247F5E90B52CDCF8B32C7 /* Printer.swift in Sources */,
 				589240B2BA287719651667C3 /* UIStoryBoard+Bundle.swift in Sources */,
-				58924988D8112223E28A8FF4 /* ArCoordinator.swift in Sources */,
+				589247922010B98C82A7EC40 /* ArCoordinator.swift in Sources */,
+				589243B18E840E818E122AC7 /* ArViewController.swift in Sources */,
+				589247E77CD827AB5E374DDC /* DashboardCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
