@@ -7,10 +7,10 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-// https://github.com/Ayiga/cordova-brother-label-printer/blob/master/src/ios/BrotherPrinter.m
-
-public class PrinterServiceImpl: PrinterService {
-    private let printQueue = DispatchQueue(label: "\(Bundle.main.bundleIdentifier!).printQueue")
+public class PrinterServiceImpl: NSObject, PrinterService {
+//    private let printQueue = DispatchQueue(label: "\(Bundle.main.bundleIdentifier!).printQueue")
+    private let scheduler = SerialDispatchQueueScheduler(qos: .background, internalSerialQueueName: "\(Bundle.main.bundleIdentifier!).printQueueInternal")
+    private let networkManager = BRPtouchNetworkManager()
     
     private let disposeBag = DisposeBag()
     
@@ -21,12 +21,32 @@ public class PrinterServiceImpl: PrinterService {
         "Brother QL-820NWB"
     ]
     
+    private let networkPrinters = Variable([Printer]())
+    private let bluetoothPrinters = Variable([Printer]())
     
-    init() {
+    public let printers: Variable<[Printer]> = Variable([])
+    
+    override init() {
+        super.init()
+        
+        initBRPNetworkManager()
+        
+        Observable
+            .combineLatest(
+                networkPrinters.asObservable(),
+                bluetoothPrinters.asObservable()
+            )
+            .map { [unowned self] (networkPrinterList, bluetoothPrinterList) in
+                self.printers.value = networkPrinterList + bluetoothPrinterList
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
+        
+        
         Observable
             .merge([
                 NotificationCenter.default.rx.notification(NSNotification.Name.BRDeviceDidConnect),
-                NotificationCenter.default.rx.notification(NSNotification.Name.BRDeviceDidDisconnect)
+                NotificationCenter.default.rx.notification(NSNotification.Name.BRDeviceDidDisconnect),
             ])
             .map { self.handleDeviceListChange($0) }
             // don't let it error out. We want to keep this connected.
@@ -34,14 +54,41 @@ public class PrinterServiceImpl: PrinterService {
             .subscribe()
             .disposed(by: disposeBag)
         
+        NotificationCenter.default.rx.notification(NSNotification.Name.BRPtouchPrinterKitMessage)
+            .subscribe(onNext: { notification in
+                guard let message = notification.userInfo?[BRMessageKey] else {
+                    return
+                }
+                print("message: \(message)")
+            })
+            .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx.notification(NSNotification.Name.BRBluetoothSessionBytesWritten)
+            .subscribe(onNext: { notification in
+                guard let written = notification.userInfo?[BRBytesWrittenKey] else {
+                    return
+                }
+                print("BT bytes written: \(written)")
+            })
+            .disposed(by: disposeBag)
+        NotificationCenter.default.rx.notification(NSNotification.Name.BRWLanConnectBytesWritten)
+            .subscribe(onNext: { notification in
+                guard let written = notification.userInfo?[BRBytesWrittenKey] else {
+                    return
+                }
+                print("WLAN bytes written: \(written)")
+            })
+            .disposed(by: disposeBag)
+        
         // register after the notification is wired up so we don't miss any notifications.
         BRPtouchBluetoothManager.shared()?.registerForBRDeviceNotifications()
         
-        // make sure the list is upto date with what is already connected.
+        // make sure the list is up to date with what is already connected.
         handleDeviceList()
+        
+        // search network for brother printer.
+        searchNetworkPrinter()
     }
-   
-    public let printers: Variable<[Printer]> = Variable([])
     
     public func availablePrinter() -> Observable<[Printer]> {
         return printers.asObservable()
@@ -61,57 +108,92 @@ public class PrinterServiceImpl: PrinterService {
     }
     
     public func printContent(image: UIImage, printer: Printer) -> Single<Bool> {
+        let maxRetry = 4
+        // let scheduler = SerialDispatchQueueScheduler(queue: printQueue, internalSerialQueueName: "\(Bundle.main.bundleIdentifier!).printQueueInternal")
         return Single<BRPtouchPrinter>
-            .deferred {
-                guard let ptp = BRPtouchPrinter(printerName: printer.deviceName, interface: CONNECTION_TYPE.BLUETOOTH) else {
-                    throw NSError(domain: "PrinterService", code: -1, userInfo: ["message": "Prepare Print Error"])
+            .create { observer in
+                var ptp: BRPtouchPrinter?
+                
+                switch printer.connectionType {
+                    case .bluetooth:
+                        print("Preparing BRPtouchPrinter with Bluetooth")
+                        ptp = BRPtouchPrinter(printerName: printer.deviceName, interface: CONNECTION_TYPE.BLUETOOTH)
+                        
+                        print("setupForBluetoothDevice")
+                        ptp?.setupForBluetoothDevice(withSerialNumber: printer.serialNumber)
+                    case .wifi:
+                        print("Preparing BRPtouchPrinter with WLAN")
+                        ptp = BRPtouchPrinter(printerName: printer.model, interface: CONNECTION_TYPE.WLAN)
+                        
+                        print("setIPAddress")
+                        ptp?.setIPAddress(printer.ip!)
+                }
+                ptp?.setPrintInfo(self.printerConfig())
+                
+                if ptp == nil {
+                    observer(.error(NSError(domain: "PrinterService", code: -1, userInfo: ["message": "Prepare Print Error"])))
+                } else {
+                    observer(.success(ptp!))
                 }
                 
-                return Single.just(ptp).do(onDispose: { ptp.endCommunication() })
+                return Disposables.create()
             }
-            .observeOn(SerialDispatchQueueScheduler(queue: printQueue, internalSerialQueueName: "\(Bundle.main.bundleIdentifier!).printQueueInternal"))
-            .map { ptp in
-                ptp.setupForBluetoothDevice(withSerialNumber: printer.serialNumber)
-                ptp.setPrintInfo(self.printerConfig())
-                
-                
-                // force anything weird going by forcing the communication to end before we start.
-                ptp.endCommunication()
-                
-                guard ptp.isPrinterReady() else {
-                    throw NSError(domain: "PrinterService", code: -2, userInfo: ["message": "Printer is not Ready"])
-                }
-                
-                guard ptp.startCommunication() else {
-                    throw NSError(domain: "PrinterService", code: -3, userInfo: ["message": "Communication Error"])
-                }
-                
-                guard ptp.print(image.cgImage, copy: 1) == ERROR_NONE_ else {
-                    throw NSError(domain: "PrinterService", code: -4, userInfo: ["message": "Printing Error "])
-                }
-                
-                return true
+            // only allow 1 print operation at a time.
+             .observeOn(scheduler)
+            .flatMap { ptp in
+                return  Single<BRPtouchPrinter>
+                    .just(ptp)
+                    .map { ptp in
+                        print("isPrinterReady")
+                        guard ptp.isPrinterReady() else {
+                            throw NSError(domain: "PrinterService", code: -2, userInfo: ["message": "Printer is not Ready"])
+                        }
+                        
+                        print("startCommunication")
+                        ptp.endCommunication() // sometime it gets in to a weird mode where the endCommunication isn't working.
+                        guard ptp.startCommunication() else {
+                            ptp.endCommunication()
+                            throw NSError(domain: "PrinterService", code: -3, userInfo: ["message": "Communication Error"])
+                        }
+
+                        print("print")
+                        guard ptp.print(image.cgImage, copy: 1) == ERROR_NONE_ else {
+                            throw NSError(domain: "PrinterService", code: -4, userInfo: ["message": "Printing Error "])
+                        }
+                        
+                        print("endCommunication")
+                        ptp.endCommunication()
+                        
+                        return true
+                    }
+                    // retry with some back off to give the printer some time to recover.
+                    .retryWhen { [unowned self] (errors: Observable<Error>) in
+                        return errors
+                            .enumerated()
+                            .flatMap { (index, error) -> Observable<Int64> in
+                                if index >= maxRetry - 1 {
+                                    return Observable.error(error)
+                                }
+                                
+                                return Observable<Int64>.timer(RxTimeInterval((index + 1) * 1), scheduler: self.scheduler)
+                            }
+                    }
             }
+            .debug()
+        
     }
     
-    private func handleDeviceListChange(_ notification: Notification) -> [Printer] {
-        guard let connectedAccessory = notification.userInfo?[BRDeviceKey] else {
-            // something went wrong... we will just return an empty string.
-            return []
+    private func handleDeviceListChange(_ notification: Notification) {
+        guard notification.userInfo?[BRDeviceKey] != nil else {
+            return
         }
-        print("ConnectDevice : \(String(describing: (connectedAccessory as? BRPtouchDeviceInfo)?.description()))")
         
-        return handleDeviceList()
+        handleDeviceList()
     }
     
-    @discardableResult
-    private func handleDeviceList() -> [Printer] {
-        let result = (BRPtouchBluetoothManager.shared()?.pairedDevices() as? [BRPtouchDeviceInfo] ?? [])
-            .map { (info: BRPtouchDeviceInfo) in Printer(model: info.strModelName, serialNumber: info.strSerialNumber) }
-        
-        self.printers.value = result
-        
-        return result
+    private func handleDeviceList() {
+        self.bluetoothPrinters.value = (BRPtouchBluetoothManager.shared()?.pairedDevices() as? [BRPtouchDeviceInfo] ?? [])
+            .map { (info: BRPtouchDeviceInfo) in Printer(connectionType: .bluetooth, model: info.strModelName, serialNumber: info.strSerialNumber) }
     }
     
     // FIXME hack to get this working for now.
@@ -124,5 +206,21 @@ public class PrinterServiceImpl: PrinterService {
         printInfo.nHalftone = HALFTONE_BINARY
         
         return printInfo
+    }
+}
+
+extension PrinterServiceImpl: BRPtouchNetworkDelegate {
+    private func initBRPNetworkManager() {
+        networkManager.delegate = self
+    }
+    
+    public func searchNetworkPrinter() {
+        self.networkManager.setPrinterNames(self.supportedPrinter)
+        self.networkManager.startSearch(5)
+    }
+    
+    public func didFinishSearch(_ sender: Any!) {
+        networkPrinters.value = (self.networkManager.getPrinterNetInfo() as? [BRPtouchDeviceInfo] ?? [])
+            .map { (info: BRPtouchDeviceInfo) in Printer(connectionType: .wifi, model: info.strModelName, serialNumber: info.strSerialNumber, ip: info.strIPAddress) }
     }
 }

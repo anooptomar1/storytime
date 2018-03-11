@@ -11,4 +11,5 @@ protocol PrinterService {
     func availablePrinter() -> Observable<[Printer]>
     func pairPrinter()
     func printContent(image: UIImage, printer: Printer) -> Single<Bool>
+    func searchNetworkPrinter()
 }

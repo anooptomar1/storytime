@@ -27,7 +27,7 @@ class DashboardViewModel: ViewModel {
     }
     
     public func onPairDevice() {
-        printerService.pairPrinter()
+        printerService.searchNetworkPrinter()
     }
     
     public func onPrint() {
