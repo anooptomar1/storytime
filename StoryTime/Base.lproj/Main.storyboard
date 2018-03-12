@@ -18,13 +18,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </arscnView>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="212" y="462"/>
+            <point key="canvasLocation" x="68" y="305"/>
+        </scene>
+        <!--Collection View Controller-->
+        <scene sceneID="tCC-TE-08G">
+            <objects>
+                <collectionViewController id="aTI-CG-IBr" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="y97-ux-lEx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oDO-WL-U7J">
+                            <size key="itemSize" width="120" height="117"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="VbU-Ei-zJ1">
+                                <rect key="frame" x="0.0" y="0.0" width="120" height="117"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="120" height="117"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="aTI-CG-IBr" id="DHV-M6-8uJ"/>
+                            <outlet property="delegate" destination="aTI-CG-IBr" id="Ods-5T-ms8"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bie-aG-0wD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="68" y="972.86356821589209"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bqQ-nE-va0">
@@ -47,42 +82,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Isi-xV-fFs">
-                                <rect key="frame" x="10" y="278.5" width="355" height="110"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FOB-MJ-bMZ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Isi-xV-fFs">
+                                <rect key="frame" x="0.0" y="637" width="375" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jab-Em-Chq">
-                                        <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="67" height="30"/>
                                         <state key="normal" title="AR"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7f5-fa-sZG">
-                                        <rect key="frame" x="0.0" y="40" width="355" height="30"/>
-                                        <state key="normal" title="Pair Printer"/>
+                                        <rect key="frame" x="77" y="0.0" width="67" height="30"/>
+                                        <state key="normal" title="Search"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2lh-NH-grq">
-                                        <rect key="frame" x="0.0" y="80" width="355" height="30"/>
-                                        <state key="normal" title="Print"/>
+                                        <rect key="frame" x="154" y="0.0" width="67" height="30"/>
+                                        <state key="normal" title="Add"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4q-Rx-Mx0">
+                                        <rect key="frame" x="231" y="0.0" width="67" height="30"/>
+                                        <state key="normal" title="Sticker"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oq9-xy-xv8">
+                                        <rect key="frame" x="308" y="0.0" width="67" height="30"/>
+                                        <state key="normal" title="Share"/>
                                     </button>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Isi-xV-fFs" firstAttribute="centerY" secondItem="54g-CZ-jY9" secondAttribute="centerY" id="Psx-CZ-zgj"/>
-                            <constraint firstItem="2sF-Be-4cw" firstAttribute="trailing" secondItem="Isi-xV-fFs" secondAttribute="trailing" constant="10" id="R6X-WS-rCT"/>
-                            <constraint firstItem="Isi-xV-fFs" firstAttribute="leading" secondItem="2sF-Be-4cw" secondAttribute="leading" constant="10" id="REW-Jo-pKj"/>
-                            <constraint firstItem="Isi-xV-fFs" firstAttribute="centerX" secondItem="54g-CZ-jY9" secondAttribute="centerX" id="poT-uQ-tSu"/>
+                            <constraint firstItem="FOB-MJ-bMZ" firstAttribute="trailing" secondItem="2sF-Be-4cw" secondAttribute="trailing" id="2AC-o0-eGA"/>
+                            <constraint firstItem="FOB-MJ-bMZ" firstAttribute="bottom" secondItem="2sF-Be-4cw" secondAttribute="bottom" id="5tp-A8-BwN"/>
+                            <constraint firstItem="FOB-MJ-bMZ" firstAttribute="bottom" secondItem="2sF-Be-4cw" secondAttribute="bottom" id="DPk-pQ-4YV"/>
+                            <constraint firstItem="2sF-Be-4cw" firstAttribute="bottom" secondItem="Isi-xV-fFs" secondAttribute="bottom" id="Dvn-ul-Si9"/>
+                            <constraint firstItem="FOB-MJ-bMZ" firstAttribute="leading" secondItem="2sF-Be-4cw" secondAttribute="leading" id="RNE-Dw-d7C"/>
+                            <constraint firstItem="FOB-MJ-bMZ" firstAttribute="top" secondItem="54g-CZ-jY9" secondAttribute="top" id="YvW-gc-mad"/>
+                            <constraint firstItem="FOB-MJ-bMZ" firstAttribute="leading" secondItem="2sF-Be-4cw" secondAttribute="leading" id="dJT-7C-AC9"/>
+                            <constraint firstItem="2sF-Be-4cw" firstAttribute="trailing" secondItem="Isi-xV-fFs" secondAttribute="trailing" id="moi-7b-Mpc"/>
+                            <constraint firstItem="FOB-MJ-bMZ" firstAttribute="trailing" secondItem="2sF-Be-4cw" secondAttribute="trailing" id="vf3-iq-7IK"/>
+                            <constraint firstItem="FOB-MJ-bMZ" firstAttribute="top" secondItem="54g-CZ-jY9" secondAttribute="top" id="yKy-iA-OYs"/>
+                            <constraint firstItem="Isi-xV-fFs" firstAttribute="leading" secondItem="2sF-Be-4cw" secondAttribute="leading" id="z4I-UW-fjI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2sF-Be-4cw"/>
                     </view>
                     <connections>
                         <outlet property="arButton" destination="Jab-Em-Chq" id="NQQ-Ad-v5y"/>
-                        <outlet property="pairButton" destination="7f5-fa-sZG" id="5Tw-pE-oir"/>
-                        <outlet property="printButton" destination="2lh-NH-grq" id="IxC-gY-FNX"/>
+                        <outlet property="stickerButton" destination="c4q-Rx-Mx0" id="dXV-U6-5dj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bNw-Gg-6LN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-410" y="1066"/>
+            <point key="canvasLocation" x="-706.39999999999998" y="528.48575712143929"/>
         </scene>
     </scenes>
 </document>

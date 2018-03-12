@@ -111,30 +111,34 @@ class ArViewController: StoryTimeViewController<DashboardViewModel>, ARSCNViewDe
         updateQueue.async { [unowned self] in
             if referenceImage.name == "Robot" {
                 self.robotContainer.transform = node.transform
-                
-                // Create a plane to visualize the initial position of the detected image.
-//                let plane = SCNPlane(width: referenceImage.physicalSize.width,
-//                    height: referenceImage.physicalSize.height)
-//                let planeNode = SCNNode(geometry: plane)
-//                planeNode.opacity = 0.75
-    
-                /*
-                 `SCNPlane` is vertically oriented in its local coordinate space, but
-                 `ARImageAnchor` assumes the image is horizontal in its local space, so
-                 rotate the plane to match.
-                 */
-                // planeNode.eulerAngles.x = -.pi / 2
-//                planeNode.transform = node.transform
-    
-                // Add the plane visualization to the scene.
-//                self.sceneView.scene.rootNode.addChildNode(planeNode)
                 self.sceneView.scene.rootNode.addChildNode(self.robotContainer)
             }
         }
-    
+        
         // session.remove(anchor: imageAnchor)
     }
     
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        guard let imageAnchor = anchor as? ARImageAnchor else { return }
+        let referenceImage = imageAnchor.referenceImage
+        
+        updateQueue.async { [unowned self] in
+            if referenceImage.name == "Robot" {
+                self.robotContainer.transform = node.transform
+            }
+        }
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
+        guard let imageAnchor = anchor as? ARImageAnchor else { return }
+        let referenceImage = imageAnchor.referenceImage
+        
+        updateQueue.async { [unowned self] in
+            if referenceImage.name == "Robot" {
+                self.robotContainer.removeFromParentNode()
+            }
+        }
+    }
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
@@ -155,21 +159,21 @@ class ArViewController: StoryTimeViewController<DashboardViewModel>, ARSCNViewDe
 //        guard let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil) else {
 //            fatalError("Missing expected asset catalog resources.")
 //        }
-    
-    
-        let robotImage = UIImage(named: "Robot")!
-        let size = CGSize(width: robotImage.size.width, height: robotImage.size.height)
-        UIGraphicsBeginImageContext(size)
-        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-        robotImage.draw(in: rect, blendMode: .normal, alpha: 1.0)
-        let context = UIGraphicsGetCurrentContext()
-        context?.setStrokeColor(red: 0, green: 0, blue: 0, alpha: 1)
-        context?.stroke(rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
         
-    
-        let reference = ARReferenceImage(newImage!.cgImage!, orientation: .up, physicalWidth: 0.065)
+        
+        let robotImage = UIImage(named: "Robot")!
+//        let size = CGSize(width: robotImage.size.width, height: robotImage.size.height)
+//        UIGraphicsBeginImageContext(size)
+//        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+//        robotImage.draw(in: rect, blendMode: .normal, alpha: 1.0)
+//        let context = UIGraphicsGetCurrentContext()
+//        context?.setStrokeColor(red: 0, green: 0, blue: 0, alpha: 1)
+//        context?.stroke(rect)
+//        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+        
+        
+        let reference = ARReferenceImage(robotImage.cgImage!, orientation: .up, physicalWidth: 0.065)
         reference.name = "Robot"
         
         let configuration = ARWorldTrackingConfiguration()

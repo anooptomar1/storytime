@@ -203,7 +203,9 @@ public class PrinterServiceImpl: NSObject, PrinterService {
         printInfo.strPaperName = "62mmRB"
         printInfo.nPrintMode = PRINT_FIT
         printInfo.nAutoCutFlag = OPTION_AUTOCUT
-        printInfo.nHalftone = HALFTONE_BINARY
+        printInfo.nHalftone = HALFTONE_ERRDIF
+        printInfo.nOrientation = ORI_LANDSCAPE
+        printInfo.nSpeed = 0
         
         return printInfo
     }

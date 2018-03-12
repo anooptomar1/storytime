@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14101" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Sticker-->
+        <scene sceneID="69K-IW-RRI">
+            <objects>
+                <viewController storyboardIdentifier="StickerViewController" title="Sticker" id="Wn5-eX-srb" customClass="StickerViewController" customModule="StoryTime" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Na-62-WG0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="USh-fO-FbP">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lwB-gl-WdL">
+                                    <size key="itemSize" width="162" height="145"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DefaultCell" id="fbj-DI-vPO" customClass="StickerCollectionViewCell" customModule="StoryTime" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="162" height="145"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="162" height="145"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oaf-vH-TUq">
+                                                    <rect key="frame" x="0.0" y="0.0" width="162" height="145"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Oaf-vH-TUq" secondAttribute="bottom" id="Qi2-re-suR"/>
+                                            <constraint firstAttribute="trailing" secondItem="Oaf-vH-TUq" secondAttribute="trailing" id="SQt-vQ-cLp"/>
+                                            <constraint firstItem="Oaf-vH-TUq" firstAttribute="leading" secondItem="fbj-DI-vPO" secondAttribute="leading" id="q2A-1u-iSx"/>
+                                            <constraint firstItem="Oaf-vH-TUq" firstAttribute="top" secondItem="fbj-DI-vPO" secondAttribute="top" id="xzl-o5-meY"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="Oaf-vH-TUq" id="Ofa-6E-chN"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="USh-fO-FbP" firstAttribute="top" secondItem="Ym8-f9-YFm" secondAttribute="top" id="QMm-yp-sDp"/>
+                            <constraint firstItem="USh-fO-FbP" firstAttribute="leading" secondItem="Ym8-f9-YFm" secondAttribute="leading" id="VzF-7X-SYh"/>
+                            <constraint firstItem="Ym8-f9-YFm" firstAttribute="bottom" secondItem="USh-fO-FbP" secondAttribute="bottom" id="v6s-tI-NrO"/>
+                            <constraint firstItem="Ym8-f9-YFm" firstAttribute="trailing" secondItem="USh-fO-FbP" secondAttribute="trailing" id="w5J-wf-gIJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ym8-f9-YFm"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="USh-fO-FbP" id="8VM-eo-2BK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hbz-cA-V7i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-591.20000000000005" y="-15.742128935532236"/>
+        </scene>
+    </scenes>
+</document>

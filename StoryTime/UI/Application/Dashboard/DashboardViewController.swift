@@ -11,22 +11,15 @@ class DashboardViewController: StoryTimeViewController<DashboardViewModel> {
     
     private let disposeBag = DisposeBag()
     
-    @IBOutlet weak var pairButton: UIButton!
     @IBOutlet weak var arButton: UIButton!
-    @IBOutlet weak var printButton: UIButton!
+    @IBOutlet weak var stickerButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        pairButton.rx.tap
+    
+        stickerButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
-                self?.viewModel.onPairDevice()
-            })
-            .disposed(by: disposeBag)
-        
-        printButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                self?.viewModel.onPrint()
+                self?.viewModel.onStickerSelection()
             })
             .disposed(by: disposeBag)
     

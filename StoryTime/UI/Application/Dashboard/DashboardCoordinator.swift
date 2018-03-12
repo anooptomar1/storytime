@@ -35,6 +35,7 @@ extension MainCoordinator {
             onNext: { [weak self] action in
                 switch action {
                     case .onAr: self?.runAr()
+                    case .onSticker: self?.runSticker()
                 }
             })
         // model.action.subscribe ...
@@ -58,6 +59,13 @@ extension MainCoordinator {
 //            })
         self.add(coordinator)
         
+        coordinator.start()
+    }
+    
+    func runSticker() {
+        let coordinator = StickerCoordinator(router: self.router)
+        self.add(coordinator)
+    
         coordinator.start()
     }
 }
