@@ -17,4 +17,10 @@ extension UIStoryboard {
             return UIStoryboard(name: "Sticker", bundle: Bundle(for: AppDelegate.self))
         }
     }
+
+    static var story: UIStoryboard {
+        get {
+            return UIStoryboard(name: "Story", bundle: Bundle(for: AppDelegate.self))
+        }
+    }
 }

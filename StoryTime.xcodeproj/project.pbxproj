@@ -18,6 +18,7 @@
 		08156FE72050F41D009A7950 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 08156FE62050F41D009A7950 /* libc++.tbd */; };
 		08156FE92050F424009A7950 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 08156FE82050F424009A7950 /* libz.tbd */; };
 		082EEDB320561C7F004F9A9F /* Sticker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 082EEDB220561C7F004F9A9F /* Sticker.storyboard */; };
+		083ED84920575A960082E831 /* Story.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 083ED84820575A960082E831 /* Story.storyboard */; };
 		08EEF95B204B73C800386A1D /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EEF958204B73C800386A1D /* CocoaLumberjackSwift.framework */; };
 		08EEF95C204B73C800386A1D /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EEF959204B73C800386A1D /* RxCocoa.framework */; };
 		08EEF95D204B73C800386A1D /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EEF95A204B73C800386A1D /* RxSwift.framework */; };
@@ -29,6 +30,7 @@
 		589240B2BA287719651667C3 /* UIStoryBoard+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924877CB47589DD1E50D43 /* UIStoryBoard+Bundle.swift */; };
 		589240CA71F6991B4AF23D0F /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 589246470C6223753830361F /* art.scnassets */; };
 		589240E00F176508B10370EE /* NavigationViewControllerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924698F3E75EEA85D8C036 /* NavigationViewControllerRouter.swift */; };
+		589240F260493704693A1A90 /* StickerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924EFDAE37F235E8EF5349 /* StickerCoordinator.swift */; };
 		58924156F3BDB14709796C4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589247B7856AD90E73ED864B /* AppDelegate.swift */; };
 		589241603A69793582411744 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924DE6B2F419755D0B2AA4 /* Coordinator.swift */; };
 		58924174738537C7D799CB3C /* ArViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589245E0100F12DF991A8EE1 /* ArViewModel.swift */; };
@@ -39,11 +41,8 @@
 		5892448598922C693409E6BB /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 58924548AB946F35C90758D6 /* Cartfile */; };
 		589244FB8BC178A2D95CB4D7 /* StoryTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924D3132A0786120BFA2F7 /* StoryTimeViewController.swift */; };
 		589245C3928029BFD9547633 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 589248566B2936657F96A716 /* Assets.xcassets */; };
-		5892461886A4DF4BA2180B0B /* StickerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589248A7FDFA1055AB6ECCD2 /* StickerCoordinator.swift */; };
 		58924686A507D0932E5A41BD /* StoryTimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924E17925959B81C88F014 /* StoryTimeUITests.swift */; };
 		58924700B1C1169865352176 /* PrinterServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924987B0E864A88FF51DDE /* PrinterServiceImpl.swift */; };
-		589247922010B98C82A7EC40 /* ArCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5892440CD46B109F20681088 /* ArCoordinator.swift */; };
-		589247E77CD827AB5E374DDC /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5892446192DBF8CA0F3D230F /* DashboardCoordinator.swift */; };
 		589247F5E90B52CDCF8B32C7 /* Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5892450F83065E6065316272 /* Printer.swift */; };
 		589248F852661591C132E8A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 589244F6DEE26E0032435511 /* LaunchScreen.storyboard */; };
 		58924924531D3F1BAEC17691 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58924D8D5C223F8BC36E52AB /* Main.storyboard */; };
@@ -55,7 +54,9 @@
 		58924B6C7FA73D327A4513CD /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924ACA8E4AEFAE047FAACE /* DashboardViewController.swift */; };
 		58924CDE2111EA4CEEE1B0AC /* StickerGridFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924D8B849921934636A3F7 /* StickerGridFlowLayout.swift */; };
 		58924D0DA60CE656CE86818D /* PrinterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589248482DF3537395809E8C /* PrinterService.swift */; };
+		58924D1364D925DB3580FD22 /* ArCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589244AE0087C9A25F188D40 /* ArCoordinator.swift */; };
 		58924E4062C80EAF002E7C85 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924440816527BADEF204C3 /* ViewModel.swift */; };
+		58924F9B35CB7B1CE01F75A7 /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589240B7DA0BDF29338D1BAC /* DashboardCoordinator.swift */; };
 		58924F9EB01827E2E1162A7E /* StickerItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924A6B91089698C774BC23 /* StickerItemViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +106,7 @@
 		08156FE62050F41D009A7950 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		08156FE82050F424009A7950 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		082EEDB220561C7F004F9A9F /* Sticker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sticker.storyboard; sourceTree = "<group>"; };
+		083ED84820575A960082E831 /* Story.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Story.storyboard; sourceTree = "<group>"; };
 		08EEF955204B73BD00386A1D /* RxCocoa.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = RxCocoa.framework.dSYM; path = Carthage/Build/iOS/RxCocoa.framework.dSYM; sourceTree = SOURCE_ROOT; };
 		08EEF956204B73BD00386A1D /* RxSwift.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = RxSwift.framework.dSYM; path = Carthage/Build/iOS/RxSwift.framework.dSYM; sourceTree = SOURCE_ROOT; };
 		08EEF957204B73BD00386A1D /* CocoaLumberjackSwift.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CocoaLumberjackSwift.framework.dSYM; path = Carthage/Build/iOS/CocoaLumberjackSwift.framework.dSYM; sourceTree = SOURCE_ROOT; };
@@ -113,14 +115,14 @@
 		08EEF95A204B73C800386A1D /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = SOURCE_ROOT; };
 		589240700EF7A49B5CFED7BB /* DashboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		58924082FC368C6C93CD1BD0 /* StickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerViewModel.swift; sourceTree = "<group>"; };
+		589240B7DA0BDF29338D1BAC /* DashboardCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
 		589241E46E9619A8899069C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		58924231CB9B57FC33ACA370 /* StoryTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoryTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		589243AFE8729AC6F9D29F10 /* StickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerViewController.swift; sourceTree = "<group>"; };
-		5892440CD46B109F20681088 /* ArCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArCoordinator.swift; sourceTree = "<group>"; };
 		58924419F285F14699FF994C /* ArViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArViewController.swift; sourceTree = "<group>"; };
 		58924440816527BADEF204C3 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		5892446192DBF8CA0F3D230F /* DashboardCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
 		58924486D06A6ED320F28AD3 /* StoryTimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoryTimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		589244AE0087C9A25F188D40 /* ArCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArCoordinator.swift; sourceTree = "<group>"; };
 		589244C56D3D7665F451E8CA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		589244E2B5D422DC1136CF51 /* StoryTime-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StoryTime-Bridging-Header.h"; sourceTree = "<group>"; };
 		5892450F83065E6065316272 /* Printer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Printer.swift; sourceTree = "<group>"; };
@@ -136,7 +138,6 @@
 		589248566B2936657F96A716 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58924877CB47589DD1E50D43 /* UIStoryBoard+Bundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryBoard+Bundle.swift"; sourceTree = "<group>"; };
 		5892488206AEA5B79C802620 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		589248A7FDFA1055AB6ECCD2 /* StickerCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerCoordinator.swift; sourceTree = "<group>"; };
 		58924987B0E864A88FF51DDE /* PrinterServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrinterServiceImpl.swift; sourceTree = "<group>"; };
 		589249E29BD7A7127D852F50 /* StoryTimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTimeTests.swift; sourceTree = "<group>"; };
 		589249E4F0D84141824B09E9 /* Sticker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sticker.swift; sourceTree = "<group>"; };
@@ -154,6 +155,7 @@
 		58924E17925959B81C88F014 /* StoryTimeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTimeUITests.swift; sourceTree = "<group>"; };
 		58924E23D0291712C65151E0 /* StickerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		58924E60168033E141254530 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		58924EFDAE37F235E8EF5349 /* StickerCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,12 +220,23 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		589240479D5A870F012B1C83 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				589244AE0087C9A25F188D40 /* ArCoordinator.swift */,
+				589240B7DA0BDF29338D1BAC /* DashboardCoordinator.swift */,
+				58924EFDAE37F235E8EF5349 /* StickerCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		589240B569D3A435E70E1C47 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				58924E9E8C718E823E019143 /* Core */,
 				58924CBE2732A398E1DC609F /* Application */,
 				5892442BE32C4A082428461B /* Extension */,
+				589240479D5A870F012B1C83 /* Coordinator */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -251,6 +264,14 @@
 				58924486D06A6ED320F28AD3 /* StoryTimeUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5892440D4BC238F0C8EB1AF3 /* Story */ = {
+			isa = PBXGroup;
+			children = (
+				083ED84820575A960082E831 /* Story.storyboard */,
+			);
+			path = Story;
 			sourceTree = "<group>";
 		};
 		5892442BE32C4A082428461B /* Extension */ = {
@@ -297,7 +318,6 @@
 				589243AFE8729AC6F9D29F10 /* StickerViewController.swift */,
 				58924A6B91089698C774BC23 /* StickerItemViewModel.swift */,
 				082EEDB220561C7F004F9A9F /* Sticker.storyboard */,
-				589248A7FDFA1055AB6ECCD2 /* StickerCoordinator.swift */,
 			);
 			path = Sticker;
 			sourceTree = "<group>";
@@ -316,6 +336,7 @@
 				58924FCDF0B6217FCC5A7341 /* Dashboard */,
 				58924FF992E6F234796CAFB7 /* AR */,
 				5892491375232099254021F0 /* Sticker */,
+				5892440D4BC238F0C8EB1AF3 /* Story */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -384,7 +405,6 @@
 			children = (
 				589240700EF7A49B5CFED7BB /* DashboardViewModel.swift */,
 				58924ACA8E4AEFAE047FAACE /* DashboardViewController.swift */,
-				5892446192DBF8CA0F3D230F /* DashboardCoordinator.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -392,7 +412,6 @@
 		58924FF992E6F234796CAFB7 /* AR */ = {
 			isa = PBXGroup;
 			children = (
-				5892440CD46B109F20681088 /* ArCoordinator.swift */,
 				58924419F285F14699FF994C /* ArViewController.swift */,
 				589245E0100F12DF991A8EE1 /* ArViewModel.swift */,
 			);
@@ -506,6 +525,7 @@
 				589248F852661591C132E8A2 /* LaunchScreen.storyboard in Resources */,
 				58924924531D3F1BAEC17691 /* Main.storyboard in Resources */,
 				589240CA71F6991B4AF23D0F /* art.scnassets in Resources */,
+				083ED84920575A960082E831 /* Story.storyboard in Resources */,
 				082EEDB320561C7F004F9A9F /* Sticker.storyboard in Resources */,
 				5892448598922C693409E6BB /* Cartfile in Resources */,
 			);
@@ -589,18 +609,18 @@
 				58924B6C7FA73D327A4513CD /* DashboardViewController.swift in Sources */,
 				589247F5E90B52CDCF8B32C7 /* Printer.swift in Sources */,
 				589240B2BA287719651667C3 /* UIStoryBoard+Bundle.swift in Sources */,
-				589247922010B98C82A7EC40 /* ArCoordinator.swift in Sources */,
 				589243B18E840E818E122AC7 /* ArViewController.swift in Sources */,
-				589247E77CD827AB5E374DDC /* DashboardCoordinator.swift in Sources */,
 				58924CDE2111EA4CEEE1B0AC /* StickerGridFlowLayout.swift in Sources */,
 				58924AC8A532A530DFBCB6DD /* StickerCollectionViewCell.swift in Sources */,
 				589243EB4E328CAB7C0447C8 /* Sticker.swift in Sources */,
 				58924098A3C1476536B617E3 /* StickerViewModel.swift in Sources */,
 				58924B31BD0D96DEC87533E0 /* StickerViewController.swift in Sources */,
 				58924F9EB01827E2E1162A7E /* StickerItemViewModel.swift in Sources */,
-				5892461886A4DF4BA2180B0B /* StickerCoordinator.swift in Sources */,
 				589240579F37C025FAB6F229 /* ViewModelCore.swift in Sources */,
 				58924174738537C7D799CB3C /* ArViewModel.swift in Sources */,
+				58924D1364D925DB3580FD22 /* ArCoordinator.swift in Sources */,
+				58924F9B35CB7B1CE01F75A7 /* DashboardCoordinator.swift in Sources */,
+				589240F260493704693A1A90 /* StickerCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
