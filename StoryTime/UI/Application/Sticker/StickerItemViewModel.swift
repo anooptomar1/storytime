@@ -4,11 +4,12 @@
 //
 
 import Foundation
+import RxSwift
 
-public class StickerItemViewModel {
-    let sticker: Sticker
+public class StickerItemViewModel: ViewModelCore {
+    public let sticker: Sticker
     
-    var selected: Bool = false
+    public var selected: Bool = false
     
     public init(_ sticker: Sticker) {
         self.sticker = sticker

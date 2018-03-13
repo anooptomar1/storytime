@@ -11,7 +11,7 @@ import SceneKit
 import ARKit
 import QuartzCore
 
-class ArViewController: StoryTimeViewController<DashboardViewModel>, ARSCNViewDelegate {
+class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
     
@@ -20,6 +20,10 @@ class ArViewController: StoryTimeViewController<DashboardViewModel>, ARSCNViewDe
     
     var robotNode: SCNNode!
     var robotContainer = SCNNode()
+    
+    deinit {
+        viewModel.onClose()
+    }
     
     /// Convenience accessor for the session owned by ARSCNView.
     var session: ARSession {

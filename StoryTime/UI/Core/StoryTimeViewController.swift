@@ -4,9 +4,14 @@
 //
 
 import UIKit
+import CocoaLumberjackSwift
 
 class StoryTimeViewController<T>: UIViewController {
     var viewModel: T!
+    
+    deinit {
+        DDLogDebug("DEINIT: \(type(of: self))")
+    }
     
     open func start(with viewModel: T) {
         self.viewModel = viewModel

@@ -6,7 +6,7 @@
 import Foundation
 import RxSwift
 
-class DashboardViewModel: ViewModel {
+class DashboardViewModel: ViewModelCore {
     
     let printerService: PrinterService
     
@@ -22,8 +22,7 @@ class DashboardViewModel: ViewModel {
         }
     }
     
-    
-    init() {
+    override init() {
         printerService = try! AppDelegate.container.resolve() as PrinterService
     }
     
@@ -35,7 +34,7 @@ class DashboardViewModel: ViewModel {
         guard let printer = printerService.printers.value.first else {
             return
         }
-    
+        
         let robotImage = UIImage(named: "Robot")!
         let size = CGSize(width: robotImage.size.width, height: robotImage.size.height)
         UIGraphicsBeginImageContext(size)

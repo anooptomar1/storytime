@@ -8,6 +8,7 @@
 
 import UIKit
 import Dip
+import CocoaLumberjackSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,16 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         AppDelegate.shared = self
+    
+        DDLog.add(DDTTYLogger.sharedInstance)
         
         router = NavigationControllerRouter(self.rootController)
-    
         
         coordinator = MainCoordinator(router: AppDelegate.shared.router)
-//        coordinator.action.subscribe(onNext: { [weak self] action in
-//                self?.coordinator = nil
-//                self?.disposeBag = nil
-//            })
-//            .disposed(by: disposeBag)
         coordinator.start()
         
         return true

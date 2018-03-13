@@ -24,12 +24,14 @@
 		08EEF95E204B73D200386A1D /* CocoaLumberjackSwift.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 08EEF957204B73BD00386A1D /* CocoaLumberjackSwift.framework.dSYM */; };
 		08EEF95F204B73D400386A1D /* RxCocoa.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 08EEF955204B73BD00386A1D /* RxCocoa.framework.dSYM */; };
 		08EEF960204B73D500386A1D /* RxSwift.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 08EEF956204B73BD00386A1D /* RxSwift.framework.dSYM */; };
+		589240579F37C025FAB6F229 /* ViewModelCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924AE4D8D1E21F50A40633 /* ViewModelCore.swift */; };
 		58924098A3C1476536B617E3 /* StickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924082FC368C6C93CD1BD0 /* StickerViewModel.swift */; };
 		589240B2BA287719651667C3 /* UIStoryBoard+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924877CB47589DD1E50D43 /* UIStoryBoard+Bundle.swift */; };
 		589240CA71F6991B4AF23D0F /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 589246470C6223753830361F /* art.scnassets */; };
 		589240E00F176508B10370EE /* NavigationViewControllerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924698F3E75EEA85D8C036 /* NavigationViewControllerRouter.swift */; };
 		58924156F3BDB14709796C4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589247B7856AD90E73ED864B /* AppDelegate.swift */; };
 		589241603A69793582411744 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924DE6B2F419755D0B2AA4 /* Coordinator.swift */; };
+		58924174738537C7D799CB3C /* ArViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589245E0100F12DF991A8EE1 /* ArViewModel.swift */; };
 		58924236E425D54CBD310BBB /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589240700EF7A49B5CFED7BB /* DashboardViewModel.swift */; };
 		58924267D60714368331015C /* CAAnimationGroup+KeyFrameAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589247EEB279F16BE9BE71C2 /* CAAnimationGroup+KeyFrameAnimation.swift */; };
 		589243B18E840E818E122AC7 /* ArViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924419F285F14699FF994C /* ArViewController.swift */; };
@@ -124,6 +126,7 @@
 		5892450F83065E6065316272 /* Printer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Printer.swift; sourceTree = "<group>"; };
 		58924548AB946F35C90758D6 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		5892458DEAD81FFE100EB704 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
+		589245E0100F12DF991A8EE1 /* ArViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArViewModel.swift; sourceTree = "<group>"; };
 		589246470C6223753830361F /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = art.scnassets; sourceTree = "<group>"; };
 		58924698F3E75EEA85D8C036 /* NavigationViewControllerRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewControllerRouter.swift; sourceTree = "<group>"; };
 		589246C28407AB1E65A41941 /* Cartfile.resolved */ = {isa = PBXFileReference; lastKnownFileType = file.resolved; path = Cartfile.resolved; sourceTree = "<group>"; };
@@ -139,6 +142,7 @@
 		589249E4F0D84141824B09E9 /* Sticker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sticker.swift; sourceTree = "<group>"; };
 		58924A6B91089698C774BC23 /* StickerItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerItemViewModel.swift; sourceTree = "<group>"; };
 		58924ACA8E4AEFAE047FAACE /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		58924AE4D8D1E21F50A40633 /* ViewModelCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelCore.swift; sourceTree = "<group>"; };
 		58924AFCBD18D5C216DF8994 /* StoryTimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoryTimeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		58924B30A23F3CC4FBD2612D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		58924CCE43F3C3E97F7E2CD8 /* ViewControllerRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerRouter.swift; sourceTree = "<group>"; };
@@ -352,6 +356,7 @@
 				589244999B5FC6817FB75E05 /* Router */,
 				58924D3132A0786120BFA2F7 /* StoryTimeViewController.swift */,
 				58924440816527BADEF204C3 /* ViewModel.swift */,
+				58924AE4D8D1E21F50A40633 /* ViewModelCore.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 			children = (
 				5892440CD46B109F20681088 /* ArCoordinator.swift */,
 				58924419F285F14699FF994C /* ArViewController.swift */,
+				589245E0100F12DF991A8EE1 /* ArViewModel.swift */,
 			);
 			path = AR;
 			sourceTree = "<group>";
@@ -593,6 +599,8 @@
 				58924B31BD0D96DEC87533E0 /* StickerViewController.swift in Sources */,
 				58924F9EB01827E2E1162A7E /* StickerItemViewModel.swift in Sources */,
 				5892461886A4DF4BA2180B0B /* StickerCoordinator.swift in Sources */,
+				589240579F37C025FAB6F229 /* ViewModelCore.swift in Sources */,
+				58924174738537C7D799CB3C /* ArViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

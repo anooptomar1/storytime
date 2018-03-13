@@ -4,10 +4,12 @@
 //
 
 import UIKit
+import RxSwift
 
 class MainCoordinator: Coordinator {
     private let router: Router
     private weak var topVC: UIViewController! = nil
+    private var disposeBag: DisposeBag! = nil
     
     public var child: [Coordinator] = []
     
@@ -44,28 +46,36 @@ extension MainCoordinator {
     }
     
     func runAr() {
-        let coordinator = ArCoordinator(router: self.router)
-//        coordinator.action
-//            .do(onSubscribe: { [weak self] in self?.add(coordinator) })
-//            .do(onDispose: { [weak self] in self?.remove(coordinator) })
-//            .subscribe(onNext: { [weak self] action in
-//                switch action {
-//                    case .logout:
-//                        self?.popoverBag = nil
-//                        self?._action.on(.next(.logout))
-//                    default:
-//                        break
-//                }
-//            })
-        self.add(coordinator)
+        disposeBag = DisposeBag()
         
+        let coordinator = ArCoordinator(router: self.router)
+        coordinator.action
+            .do(onSubscribe: { [weak self] in self?.add(coordinator) })
+            .do(onDispose: { [weak self] in self?.remove(coordinator) })
+            .subscribe(onNext: { [weak self] action in
+                switch action {
+                    case .close:
+                        self?.disposeBag = nil
+                }
+            })
+            .disposed(by: disposeBag)
         coordinator.start()
     }
     
     func runSticker() {
+        disposeBag = DisposeBag()
+        
         let coordinator = StickerCoordinator(router: self.router)
-        self.add(coordinator)
-    
+        coordinator.action
+            .do(onSubscribe: { [weak self] in self?.add(coordinator) })
+            .do(onDispose: { [weak self] in self?.remove(coordinator) })
+            .subscribe(onNext: { [weak self] action in
+                switch action {
+                    case .close:
+                        self?.disposeBag = nil
+                }
+            })
+            .disposed(by: disposeBag)
         coordinator.start()
     }
 }

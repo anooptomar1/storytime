@@ -20,6 +20,10 @@ class StickerViewController: StoryTimeViewController<StickerViewModel>, UICollec
     
     @IBOutlet var collectionView: UICollectionView!
     
+    deinit {
+        viewModel.onClose()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,13 +74,13 @@ class StickerViewController: StoryTimeViewController<StickerViewModel>, UICollec
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let sticker = viewModel.stickers.value[indexPath.item]
-        let alertController = UIAlertController(title: "Print?", message: "Are you sure you want to print \"\(sticker.sticker.assetKey)\"?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Print", message: "Print this sticker?", preferredStyle: .alert)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
         }
         alertController.addAction(cancelAction)
         
-        let OKAction = UIAlertAction(title: "OK", style: .default) { [weak self] action in
+        let OKAction = UIAlertAction(title: "Print", style: .default) { [weak self] action in
             self?.viewModel.onPrint(sticker: sticker.sticker)
         }
         alertController.addAction(OKAction)

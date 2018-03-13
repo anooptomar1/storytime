@@ -6,15 +6,26 @@
 import Foundation
 import RxSwift
 
-public class StickerViewModel {
+public class StickerViewModel: ViewModelCore {
+    public enum Action {
+        case close
+    }
+    
+    private let _action = PublishSubject<Action>()
+    public var action: Observable<Action> {
+        get {
+            return _action.asObservable()
+        }
+    }
+    
+    private let printerService: PrinterService
+    
     public let stickers = Variable([StickerItemViewModel]())
     
-    let printerService: PrinterService
-    
-    init() {
+    override init() {
         printerService = try! AppDelegate.container.resolve() as PrinterService
         
-        let stickers = ["Bear", "Brother", "Chameleon", "Peace", "Penguin", "Robot", "Samurai", "terminator"].map { (title: String) -> StickerItemViewModel in
+        let stickers = ["Bear", "Brother", "Chameleon", "Peace", "Penguin", "Robot", "Samurai"].map { (title: String) -> StickerItemViewModel in
             let sticker = Sticker(coverImage: UIImage(named: title)!, referenceImage: UIImage(named: title)!, assetKey: title)
             return StickerItemViewModel(sticker)
         }
@@ -27,21 +38,15 @@ public class StickerViewModel {
             return
         }
         
-//        let size = CGSize(width: sticker.referenceImage.size.width, height: sticker.referenceImage.size.height)
-//        UIGraphicsBeginImageContext(size)
-//        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-//        sticker.referenceImage.draw(in: rect, blendMode: .normal, alpha: 1.0)
-//        let context = UIGraphicsGetCurrentContext()
-//        context?.setStrokeColor(red: 0, green: 0, blue: 0, alpha: 1)
-//        context?.stroke(rect)
-//        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-        
         _ = printerService.printContent(image: sticker.referenceImage, printer: printer)
             .subscribe(
                 onSuccess: { _ in
                 },
                 onError: { _ in
                 })
+    }
+    
+    public func onClose() {
+        _action.onNext(.close)
     }
 }
