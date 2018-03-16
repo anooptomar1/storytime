@@ -200,7 +200,7 @@ public class PrinterServiceImpl: NSObject, PrinterService {
     private func printerConfig() -> BRPtouchPrintInfo {
         let printInfo = BRPtouchPrintInfo()
         
-        printInfo.strPaperName = "62mmRB"
+        printInfo.strPaperName = "62mm"
         printInfo.nPrintMode = PRINT_FIT
         printInfo.nAutoCutFlag = OPTION_AUTOCUT
         printInfo.nHalftone = HALFTONE_ERRDIF

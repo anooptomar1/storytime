@@ -13,6 +13,7 @@ class DashboardViewModel: ViewModelCore {
     public enum Action {
         case onAr
         case onSticker
+        case onStory
     }
     
     private let _action = PublishSubject<Action>()
@@ -60,6 +61,10 @@ class DashboardViewModel: ViewModelCore {
     
     public func onStickerSelection() {
         _action.onNext(.onSticker)
+    }
+    
+    public func onStory() {
+        _action.onNext(.onStory)
     }
     
     

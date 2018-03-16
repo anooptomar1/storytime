@@ -90,23 +90,19 @@
                                 <rect key="frame" x="0.0" y="637" width="375" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jab-Em-Chq">
-                                        <rect key="frame" x="0.0" y="0.0" width="67" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="86.5" height="30"/>
                                         <state key="normal" title="AR"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7f5-fa-sZG">
-                                        <rect key="frame" x="77" y="0.0" width="67" height="30"/>
-                                        <state key="normal" title="Search"/>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2lh-NH-grq">
-                                        <rect key="frame" x="154" y="0.0" width="67" height="30"/>
-                                        <state key="normal" title="Add"/>
+                                        <rect key="frame" x="96.5" y="0.0" width="86" height="30"/>
+                                        <state key="normal" title="Story"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4q-Rx-Mx0">
-                                        <rect key="frame" x="231" y="0.0" width="67" height="30"/>
+                                        <rect key="frame" x="192.5" y="0.0" width="86.5" height="30"/>
                                         <state key="normal" title="Sticker"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oq9-xy-xv8">
-                                        <rect key="frame" x="308" y="0.0" width="67" height="30"/>
+                                        <rect key="frame" x="289" y="0.0" width="86" height="30"/>
                                         <state key="normal" title="Share"/>
                                     </button>
                                 </subviews>
@@ -131,6 +127,7 @@
                     <connections>
                         <outlet property="arButton" destination="Jab-Em-Chq" id="NQQ-Ad-v5y"/>
                         <outlet property="stickerButton" destination="c4q-Rx-Mx0" id="dXV-U6-5dj"/>
+                        <outlet property="storyButton" destination="2lh-NH-grq" id="oer-IW-WLd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bNw-Gg-6LN" userLabel="First Responder" sceneMemberID="firstResponder"/>

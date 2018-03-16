@@ -25,7 +25,7 @@ public class StickerViewModel: ViewModelCore {
     override init() {
         printerService = try! AppDelegate.container.resolve() as PrinterService
         
-        let stickers = ["Bear", "Brother", "Chameleon", "Peace", "Penguin", "Robot", "Samurai"].map { (title: String) -> StickerItemViewModel in
+        let stickers = ["Bear", "Brother", "Chameleon", "Peace", "Penguin", "pikachu", "Robot", "Samurai"].map { (title: String) -> StickerItemViewModel in
             let sticker = Sticker(coverImage: UIImage(named: title)!, referenceImage: UIImage(named: title)!, assetKey: title)
             return StickerItemViewModel(sticker)
         }

@@ -38,6 +38,7 @@ extension MainCoordinator {
                 switch action {
                     case .onAr: self?.runAr()
                     case .onSticker: self?.runSticker()
+                    case .onStory: self?.runStory()
                 }
             })
         // model.action.subscribe ...
@@ -66,6 +67,23 @@ extension MainCoordinator {
         disposeBag = DisposeBag()
         
         let coordinator = StickerCoordinator(router: self.router)
+        coordinator.action
+            .do(onSubscribe: { [weak self] in self?.add(coordinator) })
+            .do(onDispose: { [weak self] in self?.remove(coordinator) })
+            .subscribe(onNext: { [weak self] action in
+                switch action {
+                    case .close:
+                        self?.disposeBag = nil
+                }
+            })
+            .disposed(by: disposeBag)
+        coordinator.start()
+    }
+    
+    func runStory() {
+        disposeBag = DisposeBag()
+        
+        let coordinator = StoryCoordinator(router: self.router)
         coordinator.action
             .do(onSubscribe: { [weak self] in self?.add(coordinator) })
             .do(onDispose: { [weak self] in self?.remove(coordinator) })
