@@ -18,6 +18,7 @@
 		08156FE72050F41D009A7950 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 08156FE62050F41D009A7950 /* libc++.tbd */; };
 		08156FE92050F424009A7950 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 08156FE82050F424009A7950 /* libz.tbd */; };
 		082EEDB320561C7F004F9A9F /* Sticker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 082EEDB220561C7F004F9A9F /* Sticker.storyboard */; };
+		083A2198205F73400043FBD9 /* rj4030ai_102mm.bin in Resources */ = {isa = PBXBuildFile; fileRef = 083A2197205F73400043FBD9 /* rj4030ai_102mm.bin */; };
 		083ED84920575A960082E831 /* Story.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 083ED84820575A960082E831 /* Story.storyboard */; };
 		08EEF95B204B73C800386A1D /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EEF958204B73C800386A1D /* CocoaLumberjackSwift.framework */; };
 		08EEF95C204B73C800386A1D /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EEF959204B73C800386A1D /* RxCocoa.framework */; };
@@ -44,6 +45,7 @@
 		589245C3928029BFD9547633 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 589248566B2936657F96A716 /* Assets.xcassets */; };
 		58924686A507D0932E5A41BD /* StoryTimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924E17925959B81C88F014 /* StoryTimeUITests.swift */; };
 		58924700B1C1169865352176 /* PrinterServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924987B0E864A88FF51DDE /* PrinterServiceImpl.swift */; };
+		589247290CF618DD4697F332 /* ScrapBookCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924E84B2CF81D33652ACAE /* ScrapBookCoordinator.swift */; };
 		589247F5E90B52CDCF8B32C7 /* Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5892450F83065E6065316272 /* Printer.swift */; };
 		5892480E39B9103A0D60DD54 /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589244A32A258401D06E2D0B /* StoryViewController.swift */; };
 		5892484A537735A9CB6FC99A /* StoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924890D651E4A67E4588EF /* StoryViewCell.swift */; };
@@ -56,9 +58,11 @@
 		58924B31BD0D96DEC87533E0 /* StickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589243AFE8729AC6F9D29F10 /* StickerViewController.swift */; };
 		58924B4C9DC25D2923D32348 /* StoryTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589249E29BD7A7127D852F50 /* StoryTimeTests.swift */; };
 		58924B6C7FA73D327A4513CD /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924ACA8E4AEFAE047FAACE /* DashboardViewController.swift */; };
+		58924BE29269B6AC3C66F184 /* ScrapBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589247F952C27B464A8B4593 /* ScrapBookViewModel.swift */; };
 		58924CDE2111EA4CEEE1B0AC /* StickerGridFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924D8B849921934636A3F7 /* StickerGridFlowLayout.swift */; };
 		58924D0DA60CE656CE86818D /* PrinterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589248482DF3537395809E8C /* PrinterService.swift */; };
 		58924D1364D925DB3580FD22 /* ArCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589244AE0087C9A25F188D40 /* ArCoordinator.swift */; };
+		58924D92E31E9EB453DE72AE /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924010C9A55C5D5704645A /* Style.swift */; };
 		58924DF216DA6C341F6B1472 /* StoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924600B1F066FF069E0BDB /* StoryCoordinator.swift */; };
 		58924E4062C80EAF002E7C85 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924440816527BADEF204C3 /* ViewModel.swift */; };
 		58924EA0EB756D4B5F986A3B /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924B68684FF96AF3D6826C /* Story.swift */; };
@@ -114,6 +118,7 @@
 		08156FE62050F41D009A7950 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		08156FE82050F424009A7950 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		082EEDB220561C7F004F9A9F /* Sticker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sticker.storyboard; sourceTree = "<group>"; };
+		083A2197205F73400043FBD9 /* rj4030ai_102mm.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = rj4030ai_102mm.bin; sourceTree = "<group>"; };
 		083ED84820575A960082E831 /* Story.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Story.storyboard; sourceTree = "<group>"; };
 		08EEF955204B73BD00386A1D /* RxCocoa.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = RxCocoa.framework.dSYM; path = Carthage/Build/iOS/RxCocoa.framework.dSYM; sourceTree = SOURCE_ROOT; };
 		08EEF956204B73BD00386A1D /* RxSwift.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = RxSwift.framework.dSYM; path = Carthage/Build/iOS/RxSwift.framework.dSYM; sourceTree = SOURCE_ROOT; };
@@ -121,6 +126,7 @@
 		08EEF958204B73C800386A1D /* CocoaLumberjackSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjackSwift.framework; path = Carthage/Build/iOS/CocoaLumberjackSwift.framework; sourceTree = SOURCE_ROOT; };
 		08EEF959204B73C800386A1D /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = SOURCE_ROOT; };
 		08EEF95A204B73C800386A1D /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = SOURCE_ROOT; };
+		58924010C9A55C5D5704645A /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		589240700EF7A49B5CFED7BB /* DashboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		58924082FC368C6C93CD1BD0 /* StickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerViewModel.swift; sourceTree = "<group>"; };
 		589240B7DA0BDF29338D1BAC /* DashboardCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
@@ -145,6 +151,7 @@
 		589246C28407AB1E65A41941 /* Cartfile.resolved */ = {isa = PBXFileReference; lastKnownFileType = file.resolved; path = Cartfile.resolved; sourceTree = "<group>"; };
 		589247B7856AD90E73ED864B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		589247EEB279F16BE9BE71C2 /* CAAnimationGroup+KeyFrameAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CAAnimationGroup+KeyFrameAnimation.swift"; sourceTree = "<group>"; };
+		589247F952C27B464A8B4593 /* ScrapBookViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrapBookViewModel.swift; sourceTree = "<group>"; };
 		589248482DF3537395809E8C /* PrinterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrinterService.swift; sourceTree = "<group>"; };
 		589248566B2936657F96A716 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58924877CB47589DD1E50D43 /* UIStoryBoard+Bundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryBoard+Bundle.swift"; sourceTree = "<group>"; };
@@ -169,6 +176,7 @@
 		58924E17925959B81C88F014 /* StoryTimeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTimeUITests.swift; sourceTree = "<group>"; };
 		58924E23D0291712C65151E0 /* StickerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		58924E60168033E141254530 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		58924E84B2CF81D33652ACAE /* ScrapBookCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrapBookCoordinator.swift; sourceTree = "<group>"; };
 		58924EAEF42A40353B0D5B51 /* StoryPrintViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPrintViewModel.swift; sourceTree = "<group>"; };
 		58924EFDAE37F235E8EF5349 /* StickerCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerCoordinator.swift; sourceTree = "<group>"; };
 		58924F31437CDD4484098C4A /* StoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryViewModel.swift; sourceTree = "<group>"; };
@@ -244,6 +252,7 @@
 				58924EFDAE37F235E8EF5349 /* StickerCoordinator.swift */,
 				58924600B1F066FF069E0BDB /* StoryCoordinator.swift */,
 				589245D2A5137EE4E601632B /* PhotoPickerCoordinator.swift */,
+				58924E84B2CF81D33652ACAE /* ScrapBookCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -301,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				58924877CB47589DD1E50D43 /* UIStoryBoard+Bundle.swift */,
+				58924010C9A55C5D5704645A /* Style.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -321,6 +331,14 @@
 				589249E29BD7A7127D852F50 /* StoryTimeTests.swift */,
 			);
 			path = StoryTimeTests;
+			sourceTree = "<group>";
+		};
+		589247795CC517E71968FBC5 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				589247F952C27B464A8B4593 /* ScrapBookViewModel.swift */,
+			);
+			path = Add;
 			sourceTree = "<group>";
 		};
 		589247D8B377AE8E9F82133A /* PhotoPicker */ = {
@@ -349,6 +367,7 @@
 				589243AFE8729AC6F9D29F10 /* StickerViewController.swift */,
 				58924A6B91089698C774BC23 /* StickerItemViewModel.swift */,
 				082EEDB220561C7F004F9A9F /* Sticker.storyboard */,
+				589247795CC517E71968FBC5 /* Add */,
 			);
 			path = Sticker;
 			sourceTree = "<group>";
@@ -426,6 +445,7 @@
 		58924FA7B28DEDC6286714A9 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				083A2197205F73400043FBD9 /* rj4030ai_102mm.bin */,
 				58924DEFDE5E74FF6AD83A21 /* Impl */,
 				589248482DF3537395809E8C /* PrinterService.swift */,
 			);
@@ -551,6 +571,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				083A2198205F73400043FBD9 /* rj4030ai_102mm.bin in Resources */,
 				0814C011204B82CD0069C2DA /* CocoaLumberjack.framework.dSYM in Resources */,
 				589245C3928029BFD9547633 /* Assets.xcassets in Resources */,
 				08156FE02050DDD2009A7950 /* Dip.framework.dSYM in Resources */,
@@ -661,6 +682,9 @@
 				5892484A537735A9CB6FC99A /* StoryViewCell.swift in Sources */,
 				5892421C07A564250C30417B /* StoryPrintViewController.swift in Sources */,
 				58924F821DBD1685D2A19BA9 /* StoryPrintViewModel.swift in Sources */,
+				58924D92E31E9EB453DE72AE /* Style.swift in Sources */,
+				589247290CF618DD4697F332 /* ScrapBookCoordinator.swift in Sources */,
+				58924BE29269B6AC3C66F184 /* ScrapBookViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

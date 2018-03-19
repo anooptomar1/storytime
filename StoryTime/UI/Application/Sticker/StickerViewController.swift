@@ -19,6 +19,7 @@ class StickerViewController: StoryTimeViewController<StickerViewModel>, UICollec
     // MARK: Properties - Views
     
     @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var addButton: UIBarButtonItem!
     
     deinit {
         viewModel.onClose()
@@ -37,6 +38,13 @@ class StickerViewController: StoryTimeViewController<StickerViewModel>, UICollec
             .map { [weak self] items in self?.collectionView.reloadData() }
             .subscribe()
             .disposed(by: disposeBag)
+        
+        addButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.viewModel.onAdd()
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

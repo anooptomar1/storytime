@@ -42,15 +42,8 @@ class StoryPrintViewModel: ViewModelCore {
         }
         
         let image = sticker.referenceImage
-        let context = CIContext(options: nil)
-        guard let currentFilter = CIFilter(name: "CIPhotoEffectNoir") else { return }
-        currentFilter.setValue(CIImage(image: image), forKey: kCIInputImageKey)
-        guard let output = currentFilter.outputImage, let cgImage = context.createCGImage(output, from: output.extent) else {
-            return
-        }
         
-        let stickerImage = UIImage(cgImage: cgImage, scale: image.scale, orientation: image.imageOrientation)
-        _ = printerService.printContent(image: stickerImage, printer: printer)
+        _ = printerService.printContent(image: image, printer: printer, orientation: .portrait)
             .subscribe(
                 onSuccess: { _ in
                 },
@@ -66,7 +59,7 @@ class StoryPrintViewModel: ViewModelCore {
         _ = Observable.from(story.print)
             .concatMap { [unowned self] image in
                 // FIXME this shouldn't be unowned :/
-                return self.printerService.printContent(image: image, printer: printer).asObservable()
+                return self.printerService.printContent(image: image, printer: printer, orientation: .landscape).asObservable()
             }
             .subscribe(
                 onNext: { _ in

@@ -9,6 +9,7 @@ import RxSwift
 public class StickerViewModel: ViewModelCore {
     public enum Action {
         case close
+        case add
     }
     
     private let _action = PublishSubject<Action>()
@@ -38,7 +39,7 @@ public class StickerViewModel: ViewModelCore {
             return
         }
         
-        _ = printerService.printContent(image: sticker.referenceImage, printer: printer)
+        _ = printerService.printContent(image: sticker.referenceImage, printer: printer, orientation: .portrait)
             .subscribe(
                 onSuccess: { _ in
                 },
@@ -48,5 +49,9 @@ public class StickerViewModel: ViewModelCore {
     
     public func onClose() {
         _action.onNext(.close)
+    }
+    
+    public func onAdd() {
+        _action.onNext(.add)
     }
 }

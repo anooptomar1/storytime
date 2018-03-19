@@ -23,6 +23,7 @@ class StickerCoordinator: Coordinator {
     private let router: Router
     private weak var topVC: UIViewController! = nil
     private var disposeBag: DisposeBag! = nil
+    private var scrapBookBag: DisposeBag! = nil
     
     public var child: [Coordinator] = []
     
@@ -61,9 +62,29 @@ extension StickerCoordinator {
                     case .close:
                         self?.disposeBag = nil
                         self?._action.onNext(.close)
+                    case .add:
+                        self?.runScrapBook()
                 }
                 
             })
             .disposed(by: disposeBag)
     }
+    
+    func runScrapBook() {
+        scrapBookBag = DisposeBag()
+        
+        let coordinator = ScrapBookCoordinator(router: self.router)
+        coordinator.action
+            .do(onSubscribe: { [weak self] in self?.add(coordinator) })
+            .do(onDispose: { [weak self] in self?.remove(coordinator) })
+            .subscribe(onNext: { [weak self] action in
+                switch action {
+                    case .close:
+                        self?.scrapBookBag = nil
+                }
+            })
+            .disposed(by: scrapBookBag)
+        coordinator.start()
+    }
+    
 }

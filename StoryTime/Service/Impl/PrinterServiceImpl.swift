@@ -107,7 +107,7 @@ public class PrinterServiceImpl: NSObject, PrinterService {
         BRPtouchBluetoothManager.shared()?.brShowBluetoothAccessoryPicker(withNameFilter: predicate)
     }
     
-    public func printContent(image: UIImage, printer: Printer) -> Single<Bool> {
+    public func printContent(image: UIImage, printer: Printer, orientation: PrinterOrientation) -> Single<Bool> {
         let maxRetry = 4
         // let scheduler = SerialDispatchQueueScheduler(queue: printQueue, internalSerialQueueName: "\(Bundle.main.bundleIdentifier!).printQueueInternal")
         return Single<BRPtouchPrinter>
@@ -128,7 +128,14 @@ public class PrinterServiceImpl: NSObject, PrinterService {
                         print("setIPAddress")
                         ptp?.setIPAddress(printer.ip!)
                 }
-                ptp?.setPrintInfo(self.printerConfig())
+                
+
+                if printer.model.starts(with: "RJ-4030Ai") {
+                    ptp?.setPrintInfo(self.printerWideConfig(orientation: orientation))
+                    ptp?.setCustomPaperFile(Bundle.main.path(forResource: "rj4030ai_102mm", ofType: "bin")!)
+                } else {
+                    ptp?.setPrintInfo(self.printerConfig(orientation: orientation))
+                }
                 
                 if ptp == nil {
                     observer(.error(NSError(domain: "PrinterService", code: -1, userInfo: ["message": "Prepare Print Error"])))
@@ -139,7 +146,7 @@ public class PrinterServiceImpl: NSObject, PrinterService {
                 return Disposables.create()
             }
             // only allow 1 print operation at a time.
-             .observeOn(scheduler)
+            .observeOn(scheduler)
             .flatMap { ptp in
                 return  Single<BRPtouchPrinter>
                     .just(ptp)
@@ -155,10 +162,12 @@ public class PrinterServiceImpl: NSObject, PrinterService {
                             ptp.endCommunication()
                             throw NSError(domain: "PrinterService", code: -3, userInfo: ["message": "Communication Error"])
                         }
-
+                        
                         print("print")
-                        guard ptp.print(image.cgImage, copy: 1) == ERROR_NONE_ else {
-                            throw NSError(domain: "PrinterService", code: -4, userInfo: ["message": "Printing Error "])
+                        let result = ptp.print(image.cgImage, copy: 1)
+                        guard result == ERROR_NONE_ else {
+                            print("RESULT: \(result)")
+                            throw NSError(domain: "PrinterService", code: -4, userInfo: ["message": "Printing Error \(result)"])
                         }
                         
                         print("endCommunication")
@@ -197,15 +206,39 @@ public class PrinterServiceImpl: NSObject, PrinterService {
     }
     
     // FIXME hack to get this working for now.
-    private func printerConfig() -> BRPtouchPrintInfo {
+    private func printerConfig(orientation: PrinterOrientation) -> BRPtouchPrintInfo {
         let printInfo = BRPtouchPrintInfo()
         
         printInfo.strPaperName = "62mm"
         printInfo.nPrintMode = PRINT_FIT
         printInfo.nAutoCutFlag = OPTION_AUTOCUT
-        printInfo.nHalftone = HALFTONE_ERRDIF
-        printInfo.nOrientation = ORI_LANDSCAPE
+        printInfo.nHalftone = HALFTONE_DITHER
+        
+        switch orientation {
+            case .portrait: printInfo.nOrientation = ORI_PORTRATE
+            case .landscape: printInfo.nOrientation = ORI_LANDSCAPE
+        }
+        
         printInfo.nSpeed = 0
+        printInfo.nDensity = 9
+        
+        return printInfo
+    }
+    
+    private func printerWideConfig(orientation: PrinterOrientation) -> BRPtouchPrintInfo {
+        let printInfo = BRPtouchPrintInfo()
+        
+        printInfo.strPaperName = "CUSTOM" // "62mm"
+        printInfo.nPrintMode = PRINT_FIT
+        printInfo.nHalftone = HALFTONE_DITHER
+    
+        switch orientation {
+            case .portrait: printInfo.nOrientation = ORI_PORTRATE
+            case .landscape: printInfo.nOrientation = ORI_LANDSCAPE
+        }
+    
+        printInfo.nSpeed = 0
+        printInfo.nDensity = 0
         
         return printInfo
     }
