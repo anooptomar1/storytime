@@ -29,7 +29,7 @@ class StoryPrintViewModel: ViewModelCore {
         printerService = try! AppDelegate.container.resolve() as PrinterService
         
         let stickers = story.sticker.map { (title: String) -> StickerItemViewModel in
-            let sticker = Sticker(coverImage: UIImage(named: title)!, referenceImage: UIImage(named: title)!, assetKey: title)
+            let sticker = Sticker(coverImage: UIImage(named: title)!, referenceImage: UIImage(named: title)!, assetKey: title, node: nil)
             return StickerItemViewModel(sticker)
         }
         

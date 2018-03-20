@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import SceneKit
 
 public struct Sticker {
     // cover photo.
@@ -14,4 +15,6 @@ public struct Sticker {
 
     // For demo, we will just have all the 3d asset in the app. No reason to do anything more fancier then this.
     let assetKey: String
+    
+    var node: SCNNode?
 }

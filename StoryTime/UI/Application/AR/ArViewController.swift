@@ -20,6 +20,9 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
     
     var robotNode: SCNNode!
     var robotContainer = SCNNode()
+    var firstDetectionY: Float? = nil
+    
+    var reference = [String: Sticker]()
     
     deinit {
         viewModel.onClose()
@@ -40,7 +43,7 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
         sceneView.showsStatistics = true
         
         // Create a new scene
-        let robot = SCNScene(named: "art.scnassets/robot.scn")!
+        let robot = SCNScene(named: "art.scnassets/robot/robot.scn")!
         let container = CAAnimationGroup()
         var animation: CAAnimation! = nil
         
@@ -109,41 +112,63 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
     }
 */
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        if let planeAnchor = anchor as? ARPlaneAnchor {
+            print("Plane Anchor")
+        }
+        
         guard let imageAnchor = anchor as? ARImageAnchor else { return }
         let referenceImage = imageAnchor.referenceImage
         
         updateQueue.async { [unowned self] in
+            print ("Found: \(referenceImage.name) \(self.reference[referenceImage.name!]) \(self.reference[referenceImage.name!]?.node)")
+            if self.firstDetectionY == nil {
+                self.firstDetectionY = node.position.y
+            }
+            
             if referenceImage.name == "Robot" {
                 self.robotContainer.transform = node.transform
+                self.robotContainer.position.y = self.firstDetectionY!
                 self.sceneView.scene.rootNode.addChildNode(self.robotContainer)
+//
+//                node.addChildNode(self.robotNode)
+             } else if let name = referenceImage.name, let sticker = self.reference[name] {
+                if let scene = SCNScene(named: sticker.assetKey) {
+                    scene.rootNode.transform = node.transform
+                    scene.rootNode.rotation.x = 0
+                    scene.rootNode.rotation.z = 0
+                    scene.rootNode.position.y = self.firstDetectionY!
+                    
+                    self.sceneView.scene.rootNode.addChildNode(scene.rootNode)
+                    // node.addChildNode(scene.rootNode)
+                }
             }
         }
         
         // session.remove(anchor: imageAnchor)
     }
-    
-    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        guard let imageAnchor = anchor as? ARImageAnchor else { return }
-        let referenceImage = imageAnchor.referenceImage
-        
-        updateQueue.async { [unowned self] in
-            if referenceImage.name == "Robot" {
-                self.robotContainer.transform = node.transform
-            }
-        }
-    }
-    
-    func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
-        guard let imageAnchor = anchor as? ARImageAnchor else { return }
-        let referenceImage = imageAnchor.referenceImage
-        
-        updateQueue.async { [unowned self] in
-            if referenceImage.name == "Robot" {
-                self.robotContainer.removeFromParentNode()
-            }
-        }
-    }
-    
+//
+//    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+//        guard let imageAnchor = anchor as? ARImageAnchor else { return }
+//        let referenceImage = imageAnchor.referenceImage
+//
+//        updateQueue.async { [unowned self] in
+//            if referenceImage.name == "Robot" {
+//                self.robotContainer.transform = node.transform
+//            }
+//        }
+//    }
+//
+//    func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
+//        guard let imageAnchor = anchor as? ARImageAnchor else { return }
+//        let referenceImage = imageAnchor.referenceImage
+//
+//        updateQueue.async { [unowned self] in
+//            if referenceImage.name == "Robot" {
+//                self.robotContainer.removeFromParentNode()
+//            }
+//        }
+//    }
+//
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
         
@@ -165,7 +190,7 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
 //        }
         
         
-        let robotImage = UIImage(named: "Robot")!
+//        let robotImage = UIImage(named: "Robot")!
 //        let size = CGSize(width: robotImage.size.width, height: robotImage.size.height)
 //        UIGraphicsBeginImageContext(size)
 //        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
@@ -176,14 +201,29 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
 //        let newImage = UIGraphicsGetImageFromCurrentImageContext()
 //        UIGraphicsEndImageContext()
         
+        reference = [
+            "Robot": Sticker(coverImage: UIImage(named: "Robot")!, referenceImage: UIImage(named: "Robot")!, assetKey: "Robot", node: nil),
+            "building-01-a": Sticker(coverImage: UIImage(named: "building-01-a")!, referenceImage: UIImage(named: "building-01-a")!, assetKey: "art.scnassets/buildings/building01.scn", node: nil),
+            "building-01-b": Sticker(coverImage: UIImage(named: "building-01-b")!, referenceImage: UIImage(named: "building-01-b")!, assetKey: "art.scnassets/buildings/building02.scn", node: nil),
+            "building-01-c": Sticker(coverImage: UIImage(named: "building-01-c")!, referenceImage: UIImage(named: "building-01-c")!, assetKey: "art.scnassets/buildings/building03.scn", node: nil),
+            "building-01-d": Sticker(coverImage: UIImage(named: "building-01-d")!, referenceImage: UIImage(named: "building-01-d")!, assetKey: "art.scnassets/buildings/building04.scn", node: nil)
+        ]
         
-        let reference = ARReferenceImage(robotImage.cgImage!, orientation: .up, physicalWidth: 0.065)
-        reference.name = "Robot"
+        let referenceList = reference.map { tuple -> ARRe ferenceImage in
+            let key = tuple.key
+            var sticker = tuple.value
+            let imageReference = ARReferenceImage(sticker.referenceImage.cgImage!, orientation: .up, physicalWidth: 0.065)
+            imageReference.name = key
+            return imageReference
+        }
+
+//        let reference = ARReferenceImage(robotImage.cgImage!, orientation: .up, physicalWidth: 0.065)
+//        reference.name = "Robot"
         
         let configuration = ARWorldTrackingConfiguration()
-        configuration.detectionImages = [reference]
+        configuration.detectionImages = Set(referenceList)
         session.run(configuration)
-//
+
 ////        statusViewController.scheduleMessage("Look around to detect images", inSeconds: 7.5, messageType: .contentPlacement)
     }
 }
