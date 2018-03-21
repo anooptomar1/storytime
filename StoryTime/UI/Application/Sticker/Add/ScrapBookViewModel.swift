@@ -10,11 +10,10 @@ import CocoaLumberjackSwift
 class ScrapBookViewModel: ViewModelCore {
     public enum Action {
         case close
-        case cameraMode
-        case photoMode
+        case create(Sticker)
     }
     
-    private var selectedImage: UIImage?
+    private let disposeBag = DisposeBag()
     
     private let _action = PublishSubject<Action>()
     public var action: Observable<Action> {
@@ -23,12 +22,46 @@ class ScrapBookViewModel: ViewModelCore {
         }
     }
     
-    public func onSelectPhoto(selection: UIImage) {
+    public let effects = Variable([EffectItemViewModel]())
+    public let selection = Variable<Effect?>(nil)
+    public let selectedImage = Variable<UIImage?>(nil)
     
+    init(selectedImage: UIImage) {
+        self.selectedImage.value = selectedImage
+        super.init()
+        
+        effects.value = [
+            Effect(title: "BIRTHDAY", coverImage: UIImage(named: "firework")!, effect: "firework", backgroundColor: UIColor.tealish),
+            Effect(title: "CELEBRATE", coverImage: UIImage(named: "cracker")!, effect: "cracker", backgroundColor: UIColor.pumpkinOrange),
+            Effect(title: "CONGRATS", coverImage: UIImage(named: "wine")!, effect: "wine", backgroundColor: UIColor.sunYellow),
+            Effect(title: "BIRTHDAY", coverImage: UIImage(named: "firework")!, effect: "firework-a", backgroundColor: UIColor.tealish),
+            Effect(title: "CELEBRATE", coverImage: UIImage(named: "cracker")!, effect: "cracker-a", backgroundColor: UIColor.pumpkinOrange),
+            Effect(title: "CONGRATS", coverImage: UIImage(named: "wine")!, effect: "wine-b", backgroundColor: UIColor.sunYellow),
+            Effect(title: "BIRTHDAY", coverImage: UIImage(named: "firework")!, effect: "firework-c", backgroundColor: UIColor.tealish),
+            Effect(title: "CELEBRATE", coverImage: UIImage(named: "cracker")!, effect: "cracker-e", backgroundColor: UIColor.pumpkinOrange),
+            Effect(title: "CONGRATS", coverImage: UIImage(named: "wine")!, effect: "wine-f", backgroundColor: UIColor.sunYellow),
+            Effect(title: "BIRTHDAY", coverImage: UIImage(named: "firework")!, effect: "firework-g", backgroundColor: UIColor.tealish),
+            Effect(title: "CELEBRATE", coverImage: UIImage(named: "cracker")!, effect: "cracker-h", backgroundColor: UIColor.pumpkinOrange),
+            Effect(title: "CONGRATS", coverImage: UIImage(named: "wine")!, effect: "wine-i", backgroundColor: UIColor.sunYellow),
+        ].map { EffectItemViewModel($0) }
     }
     
-    public func onSelectEffect(/*effect information*/) {
+    public func onClose() {
+        _action.onNext(.close)
+    }
     
+    public func onCreate() {
+        // hack!! :P
+        let sticker = Sticker(coverImage: selectedImage.value!, referenceImage: selectedImage.value!, assetKey: selection.value!.effect, node: nil)
+        StickerViewModel.stickers.value.append(StickerItemViewModel(sticker))
+        _action.onNext(.create(sticker))
+    }
+    
+    public func onSelectEffect(effect: Effect) {
+        self.effects.value.forEach { effectModel in
+            effectModel.selected = effectModel.effect.effect == effect.effect
+        }
+        selection.value = effect
     }
     
 }

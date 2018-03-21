@@ -7,6 +7,8 @@ import Foundation
 import RxSwift
 
 public class StickerViewModel: ViewModelCore {
+    public static let stickers = Variable([StickerItemViewModel]())
+    
     public enum Action {
         case close
         case add
@@ -21,18 +23,18 @@ public class StickerViewModel: ViewModelCore {
     
     private let printerService: PrinterService
     
-    public let stickers = Variable([StickerItemViewModel]())
-    
     override init() {
         printerService = try! AppDelegate.container.resolve() as PrinterService
         
-        let stickers = ["Bear", "Brother", "Chameleon", "Peace", "Penguin", "pikachu", "Robot", "Samurai", "building-01-a", "building-01-b", "building-01-c", "building-01-d"].map { (title: String) -> StickerItemViewModel in
-            print(title)
-            let sticker = Sticker(coverImage: UIImage(named: title)!, referenceImage: UIImage(named: title)!, assetKey: title, node: nil)
-            return StickerItemViewModel(sticker)
+        if StickerViewModel.stickers.value.count == 0 {
+            let stickers = ["Bear", "Brother", "Chameleon", "Peace", "Penguin", "pikachu", "Robot", "Samurai", "building-01-a", "building-01-b", "building-01-c", "building-01-d"].map { (title: String) -> StickerItemViewModel in
+                print(title)
+                let sticker = Sticker(coverImage: UIImage(named: title)!, referenceImage: UIImage(named: title)!, assetKey: title, node: nil)
+                return StickerItemViewModel(sticker)
+            }
+            StickerViewModel.stickers.value = stickers
         }
         
-        self.stickers.value = stickers
     }
     
     public func onPrint(sticker: Sticker) {

@@ -209,7 +209,7 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
             "building-01-d": Sticker(coverImage: UIImage(named: "building-01-d")!, referenceImage: UIImage(named: "building-01-d")!, assetKey: "art.scnassets/buildings/building04.scn", node: nil)
         ]
         
-        let referenceList = reference.map { tuple -> ARRe ferenceImage in
+        let referenceList = reference.map { tuple -> ARReferenceImage in
             let key = tuple.key
             var sticker = tuple.value
             let imageReference = ARReferenceImage(sticker.referenceImage.cgImage!, orientation: .up, physicalWidth: 0.065)

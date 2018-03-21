@@ -26,6 +26,7 @@
 		08EEF95E204B73D200386A1D /* CocoaLumberjackSwift.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 08EEF957204B73BD00386A1D /* CocoaLumberjackSwift.framework.dSYM */; };
 		08EEF95F204B73D400386A1D /* RxCocoa.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 08EEF955204B73BD00386A1D /* RxCocoa.framework.dSYM */; };
 		08EEF960204B73D500386A1D /* RxSwift.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 08EEF956204B73BD00386A1D /* RxSwift.framework.dSYM */; };
+		58924029ADA20500B7A761CB /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589240BF5DCC098604D75A12 /* Effect.swift */; };
 		589240579F37C025FAB6F229 /* ViewModelCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924AE4D8D1E21F50A40633 /* ViewModelCore.swift */; };
 		58924098A3C1476536B617E3 /* StickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924082FC368C6C93CD1BD0 /* StickerViewModel.swift */; };
 		589240B2BA287719651667C3 /* UIStoryBoard+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924877CB47589DD1E50D43 /* UIStoryBoard+Bundle.swift */; };
@@ -38,6 +39,7 @@
 		5892421C07A564250C30417B /* StoryPrintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924AAC12460B85C65D98E6 /* StoryPrintViewController.swift */; };
 		58924236E425D54CBD310BBB /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589240700EF7A49B5CFED7BB /* DashboardViewModel.swift */; };
 		58924267D60714368331015C /* CAAnimationGroup+KeyFrameAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589247EEB279F16BE9BE71C2 /* CAAnimationGroup+KeyFrameAnimation.swift */; };
+		589242C74CFF3B3A3008DA93 /* EffectItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924F43A9BBB7CB3384098D /* EffectItemViewModel.swift */; };
 		589243B18E840E818E122AC7 /* ArViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924419F285F14699FF994C /* ArViewController.swift */; };
 		589243EB4E328CAB7C0447C8 /* Sticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589249E4F0D84141824B09E9 /* Sticker.swift */; };
 		5892448598922C693409E6BB /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 58924548AB946F35C90758D6 /* Cartfile */; };
@@ -45,6 +47,7 @@
 		589245C3928029BFD9547633 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 589248566B2936657F96A716 /* Assets.xcassets */; };
 		58924686A507D0932E5A41BD /* StoryTimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924E17925959B81C88F014 /* StoryTimeUITests.swift */; };
 		58924700B1C1169865352176 /* PrinterServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924987B0E864A88FF51DDE /* PrinterServiceImpl.swift */; };
+		5892470841B1C79D931C25B6 /* StickerEffectViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589242BF5B9E8C079AF21CCA /* StickerEffectViewCell.swift */; };
 		589247290CF618DD4697F332 /* ScrapBookCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924E84B2CF81D33652ACAE /* ScrapBookCoordinator.swift */; };
 		589247F5E90B52CDCF8B32C7 /* Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5892450F83065E6065316272 /* Printer.swift */; };
 		5892480E39B9103A0D60DD54 /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589244A32A258401D06E2D0B /* StoryViewController.swift */; };
@@ -65,7 +68,9 @@
 		58924D92E31E9EB453DE72AE /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924010C9A55C5D5704645A /* Style.swift */; };
 		58924DF216DA6C341F6B1472 /* StoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924600B1F066FF069E0BDB /* StoryCoordinator.swift */; };
 		58924E4062C80EAF002E7C85 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924440816527BADEF204C3 /* ViewModel.swift */; };
+		58924E81E17AAC4A62E97637 /* ScrapBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924543BE45E00B5AFF0C6B /* ScrapBookViewController.swift */; };
 		58924EA0EB756D4B5F986A3B /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924B68684FF96AF3D6826C /* Story.swift */; };
+		58924F01A2C1BAE5B443E132 /* EffectGridFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924511CE9508F6702FA722 /* EffectGridFlowLayout.swift */; };
 		58924F75D2EFBEF4244AC4BA /* PhotoPickerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589245D2A5137EE4E601632B /* PhotoPickerCoordinator.swift */; };
 		58924F821DBD1685D2A19BA9 /* StoryPrintViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924EAEF42A40353B0D5B51 /* StoryPrintViewModel.swift */; };
 		58924F9B35CB7B1CE01F75A7 /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589240B7DA0BDF29338D1BAC /* DashboardCoordinator.swift */; };
@@ -130,8 +135,10 @@
 		589240700EF7A49B5CFED7BB /* DashboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		58924082FC368C6C93CD1BD0 /* StickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerViewModel.swift; sourceTree = "<group>"; };
 		589240B7DA0BDF29338D1BAC /* DashboardCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
+		589240BF5DCC098604D75A12 /* Effect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
 		589241E46E9619A8899069C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		58924231CB9B57FC33ACA370 /* StoryTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoryTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		589242BF5B9E8C079AF21CCA /* StickerEffectViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerEffectViewCell.swift; sourceTree = "<group>"; };
 		589243AFE8729AC6F9D29F10 /* StickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerViewController.swift; sourceTree = "<group>"; };
 		58924419F285F14699FF994C /* ArViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArViewController.swift; sourceTree = "<group>"; };
 		58924440816527BADEF204C3 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -141,6 +148,8 @@
 		589244C56D3D7665F451E8CA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		589244E2B5D422DC1136CF51 /* StoryTime-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StoryTime-Bridging-Header.h"; sourceTree = "<group>"; };
 		5892450F83065E6065316272 /* Printer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Printer.swift; sourceTree = "<group>"; };
+		58924511CE9508F6702FA722 /* EffectGridFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectGridFlowLayout.swift; sourceTree = "<group>"; };
+		58924543BE45E00B5AFF0C6B /* ScrapBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrapBookViewController.swift; sourceTree = "<group>"; };
 		58924548AB946F35C90758D6 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		5892458DEAD81FFE100EB704 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
 		589245D2A5137EE4E601632B /* PhotoPickerCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerCoordinator.swift; sourceTree = "<group>"; };
@@ -180,6 +189,7 @@
 		58924EAEF42A40353B0D5B51 /* StoryPrintViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPrintViewModel.swift; sourceTree = "<group>"; };
 		58924EFDAE37F235E8EF5349 /* StickerCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerCoordinator.swift; sourceTree = "<group>"; };
 		58924F31437CDD4484098C4A /* StoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryViewModel.swift; sourceTree = "<group>"; };
+		58924F43A9BBB7CB3384098D /* EffectItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectItemViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,6 +347,10 @@
 			isa = PBXGroup;
 			children = (
 				589247F952C27B464A8B4593 /* ScrapBookViewModel.swift */,
+				58924543BE45E00B5AFF0C6B /* ScrapBookViewController.swift */,
+				589242BF5B9E8C079AF21CCA /* StickerEffectViewCell.swift */,
+				58924F43A9BBB7CB3384098D /* EffectItemViewModel.swift */,
+				58924511CE9508F6702FA722 /* EffectGridFlowLayout.swift */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -354,6 +368,7 @@
 				5892450F83065E6065316272 /* Printer.swift */,
 				589249E4F0D84141824B09E9 /* Sticker.swift */,
 				58924B68684FF96AF3D6826C /* Story.swift */,
+				589240BF5DCC098604D75A12 /* Effect.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -685,6 +700,11 @@
 				58924D92E31E9EB453DE72AE /* Style.swift in Sources */,
 				589247290CF618DD4697F332 /* ScrapBookCoordinator.swift in Sources */,
 				58924BE29269B6AC3C66F184 /* ScrapBookViewModel.swift in Sources */,
+				58924E81E17AAC4A62E97637 /* ScrapBookViewController.swift in Sources */,
+				58924029ADA20500B7A761CB /* Effect.swift in Sources */,
+				5892470841B1C79D931C25B6 /* StickerEffectViewCell.swift in Sources */,
+				589242C74CFF3B3A3008DA93 /* EffectItemViewModel.swift in Sources */,
+				58924F01A2C1BAE5B443E132 /* EffectGridFlowLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

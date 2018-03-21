@@ -59,11 +59,36 @@ extension ScrapBookCoordinator: UIImagePickerControllerDelegate, UINavigationCon
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         // show customization screen after image is picked...
         DDLogDebug("Selected \(info)")
-    
+        showScrapbook(image: info[UIImagePickerControllerOriginalImage] as! UIImage)
+        
         router.dismiss(animated: true) {}
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         router.dismiss(animated: true) {}
+    }
+    
+    private func showScrapbook(image: UIImage) {
+        let controller = UIStoryboard.sticker.instantiateViewController(withIdentifier: "ScrapBookViewController") as! ScrapBookViewController
+        let model = ScrapBookViewModel(selectedImage: image)
+        disposeBag = DisposeBag()
+        
+        controller.start(with: model)
+        model.action
+            .do(
+                onSubscribe: { [weak self] in self?.router.push(controller) }
+            )
+            .subscribe(onNext: { [weak self] action in
+                switch action {
+                    case .close:
+                        self?.disposeBag = nil
+                        self?._action.onNext(.close)
+                    case .create:
+                        self?.disposeBag = nil
+                        self?._action.onNext(.close)
+                }
+                
+            })
+            .disposed(by: disposeBag)
     }
 }

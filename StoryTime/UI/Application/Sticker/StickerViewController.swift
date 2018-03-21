@@ -31,8 +31,8 @@ class StickerViewController: StoryTimeViewController<StickerViewModel>, UICollec
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.setCollectionViewLayout(gridLayout, animated: false)
-        
-        viewModel.stickers
+    
+        StickerViewModel.stickers
             .asObservable()
             .observeOn(MainScheduler.instance)
             .map { [weak self] items in self?.collectionView.reloadData() }
@@ -60,13 +60,13 @@ class StickerViewController: StoryTimeViewController<StickerViewModel>, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.stickers.value.count
+        return StickerViewModel.stickers.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StickerViewController.defaultRestorationId, for: indexPath) as? StickerCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.update(for: viewModel.stickers.value[indexPath.row])
+        cell.update(for: StickerViewModel.stickers.value[indexPath.row])
         
         return cell
     }
@@ -81,7 +81,7 @@ class StickerViewController: StoryTimeViewController<StickerViewModel>, UICollec
 //    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let sticker = viewModel.stickers.value[indexPath.item]
+        let sticker = StickerViewModel.stickers.value[indexPath.item]
         let alertController = UIAlertController(title: "Print", message: "Print this sticker?", preferredStyle: .alert)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
