@@ -14,13 +14,33 @@
         <scene sceneID="tXr-a1-R10">
             <objects>
                 <viewController storyboardIdentifier="ArViewController" id="BV1-FR-VrT" customClass="ArViewController" customModule="StoryTime" customModuleProvider="target" sceneMemberID="viewController">
-                    <arscnView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="BrB-h1-WRS">
+                    <view key="view" contentMode="scaleToFill" id="gLC-P8-rQW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </arscnView>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6L-g0-0Gr">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                            </arscnView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vb7-ih-CgM">
+                                <rect key="frame" x="290" y="578" width="75" height="30"/>
+                                <state key="normal" title="Story Time"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="N6L-g0-0Gr" firstAttribute="top" secondItem="ybb-2V-eHF" secondAttribute="top" id="Sxc-v8-EfA"/>
+                            <constraint firstItem="ybb-2V-eHF" firstAttribute="trailing" secondItem="Vb7-ih-CgM" secondAttribute="trailing" constant="10" id="dpA-qZ-oaK"/>
+                            <constraint firstItem="ybb-2V-eHF" firstAttribute="trailing" secondItem="N6L-g0-0Gr" secondAttribute="trailing" id="nBt-bZ-P7d"/>
+                            <constraint firstItem="N6L-g0-0Gr" firstAttribute="leading" secondItem="ybb-2V-eHF" secondAttribute="leading" id="nuS-Mx-f9d"/>
+                            <constraint firstItem="ybb-2V-eHF" firstAttribute="bottom" secondItem="Vb7-ih-CgM" secondAttribute="bottom" constant="10" id="vkZ-YW-eeF"/>
+                            <constraint firstItem="ybb-2V-eHF" firstAttribute="bottom" secondItem="N6L-g0-0Gr" secondAttribute="bottom" id="x7n-k2-2jw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ybb-2V-eHF"/>
+                    </view>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
+                        <outlet property="sceneView" destination="N6L-g0-0Gr" id="aMW-y9-TME"/>
+                        <outlet property="storyTime" destination="Vb7-ih-CgM" id="qN5-nQ-1NE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

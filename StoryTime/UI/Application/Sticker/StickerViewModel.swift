@@ -27,7 +27,7 @@ public class StickerViewModel: ViewModelCore {
         printerService = try! AppDelegate.container.resolve() as PrinterService
         
         if StickerViewModel.stickers.value.count == 0 {
-            let stickers = ["Bear", "Brother", "Chameleon", "Peace", "Penguin", "pikachu", "Robot", "Samurai", "building-01-a", "building-01-b", "building-01-c", "building-01-d"].map { (title: String) -> StickerItemViewModel in
+            let stickers = ["Bear", "Brother", "Chameleon", "Peace", "Penguin", "pikachu", "Robot", "building-01-a", "building-01-b", "building-01-c", "building-01-d", "Dragon"].map { (title: String) -> StickerItemViewModel in
                 print(title)
                 let sticker = Sticker(coverImage: UIImage(named: title)!, referenceImage: UIImage(named: title)!, assetKey: title, node: nil)
                 return StickerItemViewModel(sticker)

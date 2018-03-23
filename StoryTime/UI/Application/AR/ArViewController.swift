@@ -10,17 +10,24 @@ import UIKit
 import SceneKit
 import ARKit
 import QuartzCore
+import RxSwift
+import RxCocoa
 
 class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet var storyTime: UIButton!
     
     // A serial queue for thread safety when modifying the SceneKit node graph.
     let updateQueue = DispatchQueue(label: Bundle.main.bundleIdentifier! + ".serialSceneKitQueue")
     
+    let disposeBag = DisposeBag()
+    
     var robotNode: SCNNode!
     var robotContainer = SCNNode()
     var firstDetectionY: Float? = nil
+    
+    let audioNode = SCNNode()
     
     var reference = [String: Sticker]()
     
@@ -33,14 +40,46 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
         return sceneView.session
     }
     
+    func getSource(named: String) -> SCNAudioPlayer {
+        let audioSource = SCNAudioSource(named: "bensound-memories.mp3")!
+        return SCNAudioPlayer(source: audioSource)
+    }
+    
+    func playDragonStory() {
+        let bgmPlayer = getSource(named: "bensound-memories.mp3")
+        
+        let storyPlayer = getSource(named: "bensound-memories.mp3")
+        let storyAction = SCNAction.playAudio(storyPlayer.audioSource!, waitForCompletion: false)
+        
+        let endingPlayer = getSource(named: "empty-box-wav")
+        let endingAction = SCNAction.playAudio(endingPlayer.audioSource!, waitForCompletion: false)
+        let storyEndingAction = SCNAction.sequence([storyAction, endingAction])
+    
+        let play = SCNAction.playAudio(bgmPlayer.audioSource!, waitForCompletion: false)
+        let allAction = SCNAction.group([storyEndingAction, play])
+    
+        audioNode.addAudioPlayer(bgmPlayer)
+        audioNode.addAudioPlayer(endingPlayer)
+        audioNode.addAudioPlayer(storyPlayer)
+        
+        audioNode.runAction(allAction)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
         // Set the view's delegate
         sceneView.delegate = self
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
+        
+        storyTime.rx.tap
+            .subscribe(onNext: { [unowned self] story in
+                self.playDragonStory()
+            })
+            .disposed(by: disposeBag)
         
         // Create a new scene
         let robot = SCNScene(named: "art.scnassets/robot/robot.scn")!
@@ -68,6 +107,7 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
         robotContainer.addChildNode(robotNode)
         
         container.animation(startFrame: 5100, endFrame: 5200)
+        sceneView.scene.rootNode.addChildNode(audioNode)
         
         // Set the scene to the view
         // sceneView.scene = robot
@@ -120,7 +160,7 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
         let referenceImage = imageAnchor.referenceImage
         
         updateQueue.async { [unowned self] in
-            print ("Found: \(referenceImage.name) \(self.reference[referenceImage.name!]) \(self.reference[referenceImage.name!]?.node)")
+            print("Found: \(referenceImage.name) \(self.reference[referenceImage.name!]) \(self.reference[referenceImage.name!]?.node)")
             if self.firstDetectionY == nil {
                 self.firstDetectionY = node.position.y
             }
@@ -131,7 +171,12 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
                 self.sceneView.scene.rootNode.addChildNode(self.robotContainer)
 //
 //                node.addChildNode(self.robotNode)
-             } else if let name = referenceImage.name, let sticker = self.reference[name] {
+            } else if referenceImage.name == "Dragon" {
+                self.storyTime.isHidden = false
+                self.audioNode.transform = node.transform
+                self.audioNode.rotation.x = 0
+                self.audioNode.rotation.z = 0
+            } else if let name = referenceImage.name, let sticker = self.reference[name] {
                 if let scene = SCNScene(named: sticker.assetKey) {
                     scene.rootNode.transform = node.transform
                     scene.rootNode.rotation.x = 0
@@ -146,6 +191,7 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
         
         // session.remove(anchor: imageAnchor)
     }
+
 //
 //    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
 //        guard let imageAnchor = anchor as? ARImageAnchor else { return }
@@ -188,8 +234,8 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
 //        guard let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil) else {
 //            fatalError("Missing expected asset catalog resources.")
 //        }
-        
-        
+
+
 //        let robotImage = UIImage(named: "Robot")!
 //        let size = CGSize(width: robotImage.size.width, height: robotImage.size.height)
 //        UIGraphicsBeginImageContext(size)
@@ -206,7 +252,8 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
             "building-01-a": Sticker(coverImage: UIImage(named: "building-01-a")!, referenceImage: UIImage(named: "building-01-a")!, assetKey: "art.scnassets/buildings/building01.scn", node: nil),
             "building-01-b": Sticker(coverImage: UIImage(named: "building-01-b")!, referenceImage: UIImage(named: "building-01-b")!, assetKey: "art.scnassets/buildings/building02.scn", node: nil),
             "building-01-c": Sticker(coverImage: UIImage(named: "building-01-c")!, referenceImage: UIImage(named: "building-01-c")!, assetKey: "art.scnassets/buildings/building03.scn", node: nil),
-            "building-01-d": Sticker(coverImage: UIImage(named: "building-01-d")!, referenceImage: UIImage(named: "building-01-d")!, assetKey: "art.scnassets/buildings/building04.scn", node: nil)
+            "building-01-d": Sticker(coverImage: UIImage(named: "building-01-d")!, referenceImage: UIImage(named: "building-01-d")!, assetKey: "art.scnassets/buildings/building04.scn", node: nil),
+            "Dragon": Sticker(coverImage: UIImage(named: "Dragon")!, referenceImage: UIImage(named: "Dragon")!, assetKey: "art.scnassets/buildings/Dragon.scn", node: nil)
         ]
         
         let referenceList = reference.map { tuple -> ARReferenceImage in
