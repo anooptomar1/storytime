@@ -40,7 +40,7 @@ class ScrapBookCoordinator: NSObject, Coordinator {
     
     open func start() {
         topVC = router.top()
-        self.showPhotoSelection(mode: .photo)
+        self.showPhotoSelection(mode: .camera)
     }
     
     open func dismiss() {
@@ -51,6 +51,8 @@ class ScrapBookCoordinator: NSObject, Coordinator {
 extension ScrapBookCoordinator: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     private func showPhotoSelection(mode: SelectionMode) {
         let controller = UIImagePickerController()
+        // FIXME: Hacked to camera at the moment.
+        controller.sourceType = .camera
         controller.delegate = self
         
         router.present(controller, animated: true) {}
