@@ -20,7 +20,21 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
         "building-01-b": Sticker(coverImage: UIImage(named: "building-01-b")!, referenceImage: UIImage(named: "building-01-b")!, assetKey: "art.scnassets/buildings/building02.scn", node: nil),
         "building-01-c": Sticker(coverImage: UIImage(named: "building-01-c")!, referenceImage: UIImage(named: "building-01-c")!, assetKey: "art.scnassets/buildings/building03.scn", node: nil),
         "building-01-d": Sticker(coverImage: UIImage(named: "building-01-d")!, referenceImage: UIImage(named: "building-01-d")!, assetKey: "art.scnassets/buildings/building04.scn", node: nil),
-        "Dragon": Sticker(coverImage: UIImage(named: "Dragon")!, referenceImage: UIImage(named: "Dragon")!, assetKey: "art.scnassets/buildings/Dragon.scn", node: nil)
+
+        "Story": Sticker(coverImage: UIImage(named: "three-little-robot")!, referenceImage: UIImage(named: "three-little-robot")!, assetKey: "art.scnassets/buildings/bot-trio.scn", node: nil),
+        "dragon": Sticker(coverImage: UIImage(named: "dragon")!, referenceImage: UIImage(named: "dragon")!, assetKey: "", node: nil),
+        "house_small": Sticker(coverImage: UIImage(named: "house_small")!, referenceImage: UIImage(named: "house_small")!, assetKey: "house_small", node: nil),
+        "house": Sticker(coverImage: UIImage(named: "house")!, referenceImage: UIImage(named: "house")!, assetKey: "house", node: nil),
+        "tree": Sticker(coverImage: UIImage(named: "tree")!, referenceImage: UIImage(named: "tree")!, assetKey: "tree", node: nil),
+        "shark": Sticker(coverImage: UIImage(named: "shark")!, referenceImage: UIImage(named: "shark")!, assetKey: "shark", node: nil),
+        "plain": Sticker(coverImage: UIImage(named: "plain")!, referenceImage: UIImage(named: "plain")!, assetKey: "plain", node: nil),
+        
+//        "Story": Sticker(coverImage: UIImage(named: "Robot")!, referenceImage: UIImage(named: "Robot")!, assetKey: "art.scnassets/buildings/bot-trio.scn", node: nil),
+//        "house_small": Sticker(coverImage: UIImage(named: "Penguin")!, referenceImage: UIImage(named: "Penguin")!, assetKey: "house_small", node: nil),
+//        "house": Sticker(coverImage: UIImage(named: "house")!, referenceImage: UIImage(named: "house")!, assetKey: "house", node: nil),
+//        "tree": Sticker(coverImage: UIImage(named: "pikachu")!, referenceImage: UIImage(named: "pikachu")!, assetKey: "tree", node: nil),
+//        "shark": Sticker(coverImage: UIImage(named: "pikachu")!, referenceImage: UIImage(named: "pikachu")!, assetKey: "shark", node: nil),
+//        "plain": Sticker(coverImage: UIImage(named: "plain")!, referenceImage: UIImage(named: "plain")!, assetKey: "plain", node: nil),
     ])
     
     @IBOutlet var sceneView: ARSCNView!
@@ -41,6 +55,9 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
     
     var loaded = false
     let audioNode = SCNNode()
+    
+    var storyMode = false
+    var storyNode = SCNNode()
     
     var reference = [String: Sticker]()
     
@@ -215,7 +232,43 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
                 self.firstDetectionY = node.position.y
             }
             
-            if referenceImage.name == "StoryRobot" {
+            if self.storyMode == true {
+                self.storyNode.enumerateChildNodes({ (child, stop) in
+                    if child.name == referenceImage.name {
+                        child.isHidden = false
+                    }
+                    
+                    // err more hard coded stuff :/
+                    if referenceImage.name == "house_small", child.name == "house" {
+                        child.isHidden = true
+                    } else if referenceImage.name == "house", child.name == "house_small" {
+                        child.isHidden = true
+                    }
+                    
+                    if referenceImage.name == "dragon", child.name == "shark" {
+                        child.isHidden = true
+                    } else if referenceImage.name == "shark", child.name == "dragon" {
+                        child.isHidden = true
+                    }
+                })
+                
+                // let it detect again.
+                self.session.remove(anchor: imageAnchor)
+                return
+            }
+            
+            if referenceImage.name == "Story", let sticker = self.reference["Story"] {
+                self.storyMode = true
+                
+                if let scene = SCNScene(named: sticker.assetKey) {
+                    scene.rootNode.transform = node.transform
+                    scene.rootNode.rotation.x = 0
+                    scene.rootNode.rotation.z = 0
+                    scene.rootNode.position.y = self.firstDetectionY!
+                    self.storyNode = scene.rootNode
+                    self.sceneView.scene.rootNode.addChildNode(scene.rootNode)
+                }
+            } else if referenceImage.name == "StoryRobot" {
                 self.storyRobotContainer.transform = node.transform
                 self.storyRobotContainer.position.y = self.firstDetectionY!
                 self.sceneView.scene.rootNode.addChildNode(self.storyRobotContainer)

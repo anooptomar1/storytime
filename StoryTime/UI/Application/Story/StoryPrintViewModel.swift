@@ -19,7 +19,7 @@ class StoryPrintViewModel: ViewModelCore {
     }
     
     private let printerService: PrinterService
-    private let story: Story
+    public let story: Story
     
     public let stickers = Variable([StickerItemViewModel]())
     

@@ -69,9 +69,6 @@ public class PrinterServiceImpl: NSObject, PrinterService {
                     return
                 }
 
-//                guard let toWrite = notification.userInfo?[BRBytesToWriteKey] else {
-//                    return
-//                }
                 print("BT bytes written: \(written)")
             })
             .disposed(by: disposeBag)
@@ -241,7 +238,7 @@ public class PrinterServiceImpl: NSObject, PrinterService {
             case .landscape: printInfo.nOrientation = ORI_LANDSCAPE
         }
     
-        printInfo.nSpeed = 0
+        printInfo.nSpeed = 3
         printInfo.nDensity = 0
         
         return printInfo

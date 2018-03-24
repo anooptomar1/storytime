@@ -29,16 +29,13 @@ class StoryViewModel: ViewModelCore {
                 UIImage(named: "three-little-pig-2")!,
                 UIImage(named: "three-little-pig-3")!
             ], assetKey: "ThreeLittlePig", sticker: [
-                "mushroom", "three-little-robot", "Big Bad Wolf", "Blowing Wolf", "First Little Pig", "House Of Straws", "House Of Bricks", "House Of Sticks", "Last Little Pig", "Middle Little Pig"
+                "mushroom", "three-little-robot", "Big Bad Wolf", "Blowing Wolf", "First Little Pig", "House Of Straws", "house_small", "house", "Last Little Pig", "Middle Little Pig"
             ]),
-            Story(title: "Three Little Pig", image: UIImage(named: "three-little-pig-1")!, print: [], assetKey: "ThreeLittlePig", sticker: []),
-            Story(title: "Three Little Pig", image: UIImage(named: "three-little-pig-1")!, print: [], assetKey: "ThreeLittlePig", sticker: []),
-            Story(title: "Three Little Pig", image: UIImage(named: "three-little-pig-1")!, print: [], assetKey: "ThreeLittlePig", sticker: []),
-            Story(title: "Three Little Pig", image: UIImage(named: "three-little-pig-1")!, print: [], assetKey: "ThreeLittlePig", sticker: []),
-            Story(title: "Three Little Pig", image: UIImage(named: "three-little-pig-1")!, print: [], assetKey: "ThreeLittlePig", sticker: []),
-            Story(title: "Three Little Pig", image: UIImage(named: "three-little-pig-1")!, print: [], assetKey: "ThreeLittlePig", sticker: []),
-            Story(title: "Three Little Pig", image: UIImage(named: "three-little-pig-1")!, print: [], assetKey: "ThreeLittlePig", sticker: []),
-            Story(title: "Three Little Pig", image: UIImage(named: "three-little-pig-1")!, print: [], assetKey: "ThreeLittlePig", sticker: [])
+            Story(title: "", image: UIImage(named: "three-robot-friend")!, print: [
+                UIImage(named: "three-robot-friend")!
+            ], assetKey: "ThreeLittlePig", sticker: [
+                "dragon", "house_small", "house", "tree", "shark", "plain",
+            ])
         ]
     }
     

@@ -162,6 +162,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="collectionView" destination="7aC-J0-4Ij" id="N6j-pO-5Y9"/>
+                        <outlet property="imageView" destination="1Hr-Ey-bam" id="2O3-aR-Jbg"/>
                         <outlet property="printButton" destination="HmZ-hI-h7w" id="kHc-6H-8G7"/>
                     </connections>
                 </viewController>

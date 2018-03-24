@@ -16,6 +16,7 @@ class StoryPrintViewController: StoryTimeViewController<StoryPrintViewModel>, UI
     
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var printButton: UIButton!
+    @IBOutlet var imageView: UIImageView!
     
     deinit {
         viewModel.onClose()
@@ -40,6 +41,8 @@ class StoryPrintViewController: StoryTimeViewController<StoryPrintViewModel>, UI
             .map { [weak self] items in self?.collectionView.reloadData() }
             .subscribe()
             .disposed(by: disposeBag)
+        
+        imageView.image = viewModel.story.image
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
