@@ -14,6 +14,14 @@ import RxSwift
 import RxCocoa
 
 class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate {
+    public static let stickers = Variable([
+        "StoryRobot": Sticker(coverImage: UIImage(named: "Robot")!, referenceImage: UIImage(named: "Robot")!, assetKey: "StoryRobot", node: nil),
+        "building-01-a": Sticker(coverImage: UIImage(named: "building-01-a")!, referenceImage: UIImage(named: "building-01-a")!, assetKey: "art.scnassets/buildings/building01.scn", node: nil),
+        "building-01-b": Sticker(coverImage: UIImage(named: "building-01-b")!, referenceImage: UIImage(named: "building-01-b")!, assetKey: "art.scnassets/buildings/building02.scn", node: nil),
+        "building-01-c": Sticker(coverImage: UIImage(named: "building-01-c")!, referenceImage: UIImage(named: "building-01-c")!, assetKey: "art.scnassets/buildings/building03.scn", node: nil),
+        "building-01-d": Sticker(coverImage: UIImage(named: "building-01-d")!, referenceImage: UIImage(named: "building-01-d")!, assetKey: "art.scnassets/buildings/building04.scn", node: nil),
+        "Dragon": Sticker(coverImage: UIImage(named: "Dragon")!, referenceImage: UIImage(named: "Dragon")!, assetKey: "art.scnassets/buildings/Dragon.scn", node: nil)
+    ])
     
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet var storyTime: UIButton!
@@ -25,8 +33,13 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
     
     var robotNode: SCNNode!
     var robotContainer = SCNNode()
+    
+    var storyRobotNode: SCNNode!
+    var storyRobotContainer = SCNNode()
+    
     var firstDetectionY: Float? = nil
     
+    var loaded = false
     let audioNode = SCNNode()
     
     var reference = [String: Sticker]()
@@ -41,33 +54,41 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
     }
     
     func getSource(named: String) -> SCNAudioPlayer {
-        let audioSource = SCNAudioSource(named: "bensound-memories.mp3")!
+        let audioSource = SCNAudioSource(named: named)!
+        audioSource.load()
+        
         return SCNAudioPlayer(source: audioSource)
     }
     
     func playDragonStory() {
-        let bgmPlayer = getSource(named: "bensound-memories.mp3")
-        
-        let storyPlayer = getSource(named: "bensound-memories.mp3")
-        let storyAction = SCNAction.playAudio(storyPlayer.audioSource!, waitForCompletion: false)
-        
-        let endingPlayer = getSource(named: "empty-box-wav")
-        let endingAction = SCNAction.playAudio(endingPlayer.audioSource!, waitForCompletion: false)
-        let storyEndingAction = SCNAction.sequence([storyAction, endingAction])
+        guard !loaded else {
+            return
+        }
+        loaded = true
+//        let storyPlayer = getSource(named: "art.scnassets/story.wav")
+//        let storyAction = SCNAction.playAudio(storyPlayer.audioSource!, waitForCompletion: false)
+//
+//        let endingPlayer = getSource(named: "art.scnassets/empty-box.wav")
+//        let endingAction = SCNAction.playAudio(endingPlayer.audioSource!, waitForCompletion: false)
+//
+//        let storyEndAction = SCNAction.sequence([storyAction, endingAction])
+//
+//        let bgmPlayer = getSource(named: "art.scnassets/bensound-memories.mp3")
+//        let bgmAction = SCNAction.playAudio(bgmPlayer.audioSource!, waitForCompletion: false)
+
+//        audioNode.addAudioPlayer(bgmPlayer)
+//        audioNode.addAudioPlayer(endingPlayer)
+//        audioNode.addAudioPlayer(storyPlayer)
+
+//        audioNode.runAction(storyEndAction)
+//        audioNode.runAction(bgmAction)
     
-        let play = SCNAction.playAudio(bgmPlayer.audioSource!, waitForCompletion: false)
-        let allAction = SCNAction.group([storyEndingAction, play])
     
-        audioNode.addAudioPlayer(bgmPlayer)
-        audioNode.addAudioPlayer(endingPlayer)
-        audioNode.addAudioPlayer(storyPlayer)
-        
-        audioNode.runAction(allAction)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         
         // Set the view's delegate
         sceneView.delegate = self
@@ -107,6 +128,35 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
         robotContainer.addChildNode(robotNode)
         
         container.animation(startFrame: 5100, endFrame: 5200)
+        
+        
+        let storyRobot = SCNScene(named: "art.scnassets/buildings/story_robot.scn")!
+        let storyContainer = CAAnimationGroup()
+        var storyAnimation: CAAnimation! = nil
+        
+        // Some note about animation here.
+        // In most cases, all the animation is merged into a single animation. This means that we need to split the animation into peaces in order to get the desired animation.
+        // We can do this by setting offset to the CAAniamtion, then clipping it using CAAnimationGroup.
+        
+        storyRobotNode = storyRobot.rootNode
+        storyRobot.rootNode.enumerateChildNodes({ [unowned self] (child, stop) in
+            if child.name == "Root_Bone" {
+                if child.animationKeys.count > 0 {
+                    storyAnimation = child.animation(forKey: child.animationKeys.first!)!
+                    storyContainer.animations = [storyAnimation]
+                    child.removeAllAnimations()
+                    
+                    child.addAnimation(storyContainer, forKey: "StoryRobotAnimation")
+                }
+            }
+            
+            child.scale = SCNVector3(0.05, 0.05, 0.05)
+        })
+        storyRobotContainer.addChildNode(storyRobotNode)
+        
+        storyContainer.animation(startFrame: 2670, endFrame: 2800)
+        
+        
         sceneView.scene.rootNode.addChildNode(audioNode)
         
         // Set the scene to the view
@@ -165,26 +215,48 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
                 self.firstDetectionY = node.position.y
             }
             
-            if referenceImage.name == "Robot" {
+            if referenceImage.name == "StoryRobot" {
+                self.storyRobotContainer.transform = node.transform
+                self.storyRobotContainer.position.y = self.firstDetectionY!
+                self.sceneView.scene.rootNode.addChildNode(self.storyRobotContainer)
+
+//                node.addChildNode(self.storyRobotNode)
+//                self.sceneView.scene.rootNode.addChildNode(self.storyRobotContainer)
+                
+            } else if referenceImage.name == "Robot" {
                 self.robotContainer.transform = node.transform
                 self.robotContainer.position.y = self.firstDetectionY!
                 self.sceneView.scene.rootNode.addChildNode(self.robotContainer)
-//
+
 //                node.addChildNode(self.robotNode)
-            } else if referenceImage.name == "Dragon" {
-                self.storyTime.isHidden = false
-                self.audioNode.transform = node.transform
-                self.audioNode.rotation.x = 0
-                self.audioNode.rotation.z = 0
+//            } else if referenceImage.name == "Dragon" {
+//                DispatchQueue.main.async {
+//                    self.storyTime.isHidden = false
+//                }
+//
+//                self.audioNode.transform = node.transform
+//                self.audioNode.rotation.x = 0
+//                self.audioNode.rotation.z = 0
             } else if let name = referenceImage.name, let sticker = self.reference[name] {
-                if let scene = SCNScene(named: sticker.assetKey) {
-                    scene.rootNode.transform = node.transform
-                    scene.rootNode.rotation.x = 0
-                    scene.rootNode.rotation.z = 0
-                    scene.rootNode.position.y = self.firstDetectionY!
+                if sticker.assetKey == "Robot" {
+                    self.robotContainer.transform = node.transform
+                    self.robotContainer.position.y = self.firstDetectionY!
+                    self.sceneView.scene.rootNode.addChildNode(self.robotContainer)
+                } else if sticker.assetKey == "StoryRobot" {
+                    self.storyRobotContainer.transform = node.transform
+                    self.storyRobotContainer.position.y = self.firstDetectionY!
+                    self.sceneView.scene.rootNode.addChildNode(self.storyRobotContainer)
+                } else {
                     
-                    self.sceneView.scene.rootNode.addChildNode(scene.rootNode)
-                    // node.addChildNode(scene.rootNode)
+                    if let scene = SCNScene(named: sticker.assetKey) {
+                        scene.rootNode.transform = node.transform
+                        scene.rootNode.rotation.x = 0
+                        scene.rootNode.rotation.z = 0
+                        scene.rootNode.position.y = self.firstDetectionY!
+                        
+                        self.sceneView.scene.rootNode.addChildNode(scene.rootNode)
+                        // node.addChildNode(scene.rootNode)
+                    }
                 }
             }
         }
@@ -247,14 +319,7 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
 //        let newImage = UIGraphicsGetImageFromCurrentImageContext()
 //        UIGraphicsEndImageContext()
         
-        reference = [
-            "Robot": Sticker(coverImage: UIImage(named: "Robot")!, referenceImage: UIImage(named: "Robot")!, assetKey: "Robot", node: nil),
-            "building-01-a": Sticker(coverImage: UIImage(named: "building-01-a")!, referenceImage: UIImage(named: "building-01-a")!, assetKey: "art.scnassets/buildings/building01.scn", node: nil),
-            "building-01-b": Sticker(coverImage: UIImage(named: "building-01-b")!, referenceImage: UIImage(named: "building-01-b")!, assetKey: "art.scnassets/buildings/building02.scn", node: nil),
-            "building-01-c": Sticker(coverImage: UIImage(named: "building-01-c")!, referenceImage: UIImage(named: "building-01-c")!, assetKey: "art.scnassets/buildings/building03.scn", node: nil),
-            "building-01-d": Sticker(coverImage: UIImage(named: "building-01-d")!, referenceImage: UIImage(named: "building-01-d")!, assetKey: "art.scnassets/buildings/building04.scn", node: nil),
-            "Dragon": Sticker(coverImage: UIImage(named: "Dragon")!, referenceImage: UIImage(named: "Dragon")!, assetKey: "art.scnassets/buildings/Dragon.scn", node: nil)
-        ]
+        reference = ArViewController.stickers.value
         
         let referenceList = reference.map { tuple -> ARReferenceImage in
             let key = tuple.key

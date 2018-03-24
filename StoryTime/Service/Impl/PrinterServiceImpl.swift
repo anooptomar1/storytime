@@ -68,6 +68,10 @@ public class PrinterServiceImpl: NSObject, PrinterService {
                 guard let written = notification.userInfo?[BRBytesWrittenKey] else {
                     return
                 }
+
+//                guard let toWrite = notification.userInfo?[BRBytesToWriteKey] else {
+//                    return
+//                }
                 print("BT bytes written: \(written)")
             })
             .disposed(by: disposeBag)

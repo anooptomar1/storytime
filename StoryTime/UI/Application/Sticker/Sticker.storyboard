@@ -91,10 +91,10 @@
                                 </constraints>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bBr-3a-pOU">
-                                <rect key="frame" x="0.0" y="557" width="375" height="110"/>
+                                <rect key="frame" x="0.0" y="467" width="375" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="110" id="Kir-9g-RBr"/>
+                                    <constraint firstAttribute="height" constant="200" id="Kir-9g-RBr"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bjC-Ie-JpL">
                                     <size key="itemSize" width="116" height="117"/>
@@ -104,7 +104,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DefaultCell" id="CGW-I2-S0A" customClass="StickerEffectViewCell" customModule="StoryTime" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="-3.5" width="116" height="117"/>
+                                        <rect key="frame" x="0.0" y="41.5" width="116" height="117"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="116" height="117"/>

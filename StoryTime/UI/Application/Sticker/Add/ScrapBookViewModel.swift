@@ -22,6 +22,7 @@ class ScrapBookViewModel: ViewModelCore {
         }
     }
     
+    
     public let effects = Variable([EffectItemViewModel]())
     public let selection = Variable<Effect?>(nil)
     public let selectedImage = Variable<UIImage?>(nil)
@@ -31,18 +32,18 @@ class ScrapBookViewModel: ViewModelCore {
         super.init()
         
         effects.value = [
-            Effect(title: "BIRTHDAY", coverImage: UIImage(named: "firework")!, effect: "firework", backgroundColor: UIColor.tealish),
-            Effect(title: "CELEBRATE", coverImage: UIImage(named: "cracker")!, effect: "cracker", backgroundColor: UIColor.pumpkinOrange),
-            Effect(title: "CONGRATS", coverImage: UIImage(named: "wine")!, effect: "wine", backgroundColor: UIColor.sunYellow),
-            Effect(title: "BIRTHDAY", coverImage: UIImage(named: "firework")!, effect: "firework-a", backgroundColor: UIColor.tealish),
-            Effect(title: "CELEBRATE", coverImage: UIImage(named: "cracker")!, effect: "cracker-a", backgroundColor: UIColor.pumpkinOrange),
-            Effect(title: "CONGRATS", coverImage: UIImage(named: "wine")!, effect: "wine-b", backgroundColor: UIColor.sunYellow),
-            Effect(title: "BIRTHDAY", coverImage: UIImage(named: "firework")!, effect: "firework-c", backgroundColor: UIColor.tealish),
-            Effect(title: "CELEBRATE", coverImage: UIImage(named: "cracker")!, effect: "cracker-e", backgroundColor: UIColor.pumpkinOrange),
-            Effect(title: "CONGRATS", coverImage: UIImage(named: "wine")!, effect: "wine-f", backgroundColor: UIColor.sunYellow),
-            Effect(title: "BIRTHDAY", coverImage: UIImage(named: "firework")!, effect: "firework-g", backgroundColor: UIColor.tealish),
-            Effect(title: "CELEBRATE", coverImage: UIImage(named: "cracker")!, effect: "cracker-h", backgroundColor: UIColor.pumpkinOrange),
-            Effect(title: "CONGRATS", coverImage: UIImage(named: "wine")!, effect: "wine-i", backgroundColor: UIColor.sunYellow),
+            Effect(title: "BIRTHDAY", coverImage: UIImage(named: "firework")!, effect: "Robot", backgroundColor: UIColor.tealish),
+            Effect(title: "CELEBRATE", coverImage: UIImage(named: "cracker")!, effect: "StoryRobot", backgroundColor: UIColor.pumpkinOrange),
+            Effect(title: "CONGRATS", coverImage: UIImage(named: "wine")!, effect: "Wine", backgroundColor: UIColor.sunYellow),
+//            Effect(title: "BIRTHDAY", coverImage: UIImage(named: "firework")!, effect: "Robot", backgroundColor: UIColor.tealish),
+//            Effect(title: "CELEBRATE", coverImage: UIImage(named: "cracker")!, effect: "Robot", backgroundColor: UIColor.pumpkinOrange),
+//            Effect(title: "CONGRATS", coverImage: UIImage(named: "wine")!, effect: "Robot", backgroundColor: UIColor.sunYellow),
+//            Effect(title: "BIRTHDAY", coverImage: UIImage(named: "firework")!, effect: "Robot", backgroundColor: UIColor.tealish),
+//            Effect(title: "CELEBRATE", coverImage: UIImage(named: "cracker")!, effect: "Robot", backgroundColor: UIColor.pumpkinOrange),
+//            Effect(title: "CONGRATS", coverImage: UIImage(named: "wine")!, effect: "Robot", backgroundColor: UIColor.sunYellow),
+//            Effect(title: "BIRTHDAY", coverImage: UIImage(named: "firework")!, effect: "Robot", backgroundColor: UIColor.tealish),
+//            Effect(title: "CELEBRATE", coverImage: UIImage(named: "cracker")!, effect: "Robot", backgroundColor: UIColor.pumpkinOrange),
+//            Effect(title: "CONGRATS", coverImage: UIImage(named: "wine")!, effect: "Robot", backgroundColor: UIColor.sunYellow),
         ].map { EffectItemViewModel($0) }
     }
     
@@ -50,9 +51,26 @@ class ScrapBookViewModel: ViewModelCore {
         _action.onNext(.close)
     }
     
+    func randomString(len: Int) -> String {
+        
+        let letters: NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let len = UInt32(letters.length)
+        
+        var randomString = ""
+        
+        for _ in 0..<len {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        
+        return randomString
+    }
+    
     public func onCreate() {
         // hack!! :P
         let sticker = Sticker(coverImage: selectedImage.value!, referenceImage: selectedImage.value!, assetKey: selection.value!.effect, node: nil)
+        ArViewController.stickers.value[randomString(len: 10)] = sticker
         StickerViewModel.stickers.value.append(StickerItemViewModel(sticker))
         _action.onNext(.create(sticker))
     }

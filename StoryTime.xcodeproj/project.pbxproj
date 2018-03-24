@@ -125,10 +125,6 @@
 		082EEDB220561C7F004F9A9F /* Sticker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sticker.storyboard; sourceTree = "<group>"; };
 		083A2197205F73400043FBD9 /* rj4030ai_102mm.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = rj4030ai_102mm.bin; sourceTree = "<group>"; };
 		083ED84820575A960082E831 /* Story.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Story.storyboard; sourceTree = "<group>"; };
-		0870488C20647F0A0037E81D /* story.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = story.wav; sourceTree = "<group>"; };
-		0870488D20647F0A0037E81D /* empty-box.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "empty-box.wav"; sourceTree = "<group>"; };
-		0870488E20647F0A0037E81D /* bensound-memories.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bensound-memories.mp3"; sourceTree = "<group>"; };
-		0870488F20647F0B0037E81D /* gold.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gold.wav; sourceTree = "<group>"; };
 		08EEF955204B73BD00386A1D /* RxCocoa.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = RxCocoa.framework.dSYM; path = Carthage/Build/iOS/RxCocoa.framework.dSYM; sourceTree = SOURCE_ROOT; };
 		08EEF956204B73BD00386A1D /* RxSwift.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = RxSwift.framework.dSYM; path = Carthage/Build/iOS/RxSwift.framework.dSYM; sourceTree = SOURCE_ROOT; };
 		08EEF957204B73BD00386A1D /* CocoaLumberjackSwift.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CocoaLumberjackSwift.framework.dSYM; path = Carthage/Build/iOS/CocoaLumberjackSwift.framework.dSYM; sourceTree = SOURCE_ROOT; };
@@ -414,10 +410,6 @@
 		58924CC446FBFB6EE73A7E8C /* StoryTime */ = {
 			isa = PBXGroup;
 			children = (
-				0870488E20647F0A0037E81D /* bensound-memories.mp3 */,
-				0870488D20647F0A0037E81D /* empty-box.wav */,
-				0870488F20647F0B0037E81D /* gold.wav */,
-				0870488C20647F0A0037E81D /* story.wav */,
 				08156FE52050DFEF009A7950 /* StoryTime.entitlements */,
 				08EEF94D204B714E00386A1D /* lib */,
 				589241E46E9619A8899069C8 /* Info.plist */,

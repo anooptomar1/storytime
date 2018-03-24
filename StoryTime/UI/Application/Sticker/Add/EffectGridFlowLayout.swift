@@ -6,8 +6,8 @@
 import Foundation
 
 class EffectGridFlowLayout: UICollectionViewFlowLayout {
-    public static let itemHeight = UIDevice.current.userInterfaceIdiom == .pad ? 200 : 100
-    public static let itemMinWidth = UIDevice.current.userInterfaceIdiom == .pad ? 200 : 100
+    public static let itemHeight = UIDevice.current.userInterfaceIdiom == .pad ? 100 : 100
+    public static let itemMinWidth = UIDevice.current.userInterfaceIdiom == .pad ? 100 : 100
     
     override var itemSize: CGSize {
         get {
