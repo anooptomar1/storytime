@@ -77,32 +77,6 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
         return SCNAudioPlayer(source: audioSource)
     }
     
-    func playDragonStory() {
-        guard !loaded else {
-            return
-        }
-        loaded = true
-//        let storyPlayer = getSource(named: "art.scnassets/story.wav")
-//        let storyAction = SCNAction.playAudio(storyPlayer.audioSource!, waitForCompletion: false)
-//
-//        let endingPlayer = getSource(named: "art.scnassets/empty-box.wav")
-//        let endingAction = SCNAction.playAudio(endingPlayer.audioSource!, waitForCompletion: false)
-//
-//        let storyEndAction = SCNAction.sequence([storyAction, endingAction])
-//
-//        let bgmPlayer = getSource(named: "art.scnassets/bensound-memories.mp3")
-//        let bgmAction = SCNAction.playAudio(bgmPlayer.audioSource!, waitForCompletion: false)
-
-//        audioNode.addAudioPlayer(bgmPlayer)
-//        audioNode.addAudioPlayer(endingPlayer)
-//        audioNode.addAudioPlayer(storyPlayer)
-
-//        audioNode.runAction(storyEndAction)
-//        audioNode.runAction(bgmAction)
-    
-    
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -115,7 +89,6 @@ class ArViewController: StoryTimeViewController<ArViewModel>, ARSCNViewDelegate 
         
         storyTime.rx.tap
             .subscribe(onNext: { [unowned self] story in
-                self.playDragonStory()
             })
             .disposed(by: disposeBag)
         
