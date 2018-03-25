@@ -40,6 +40,7 @@
 		58924236E425D54CBD310BBB /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589240700EF7A49B5CFED7BB /* DashboardViewModel.swift */; };
 		58924267D60714368331015C /* CAAnimationGroup+KeyFrameAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589247EEB279F16BE9BE71C2 /* CAAnimationGroup+KeyFrameAnimation.swift */; };
 		589242C74CFF3B3A3008DA93 /* EffectItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924F43A9BBB7CB3384098D /* EffectItemViewModel.swift */; };
+		5892432E56B15B35CC221B77 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5892404A37F4B7A7A3EF679D /* LICENSE */; };
 		589243B18E840E818E122AC7 /* ArViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924419F285F14699FF994C /* ArViewController.swift */; };
 		589243EB4E328CAB7C0447C8 /* Sticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589249E4F0D84141824B09E9 /* Sticker.swift */; };
 		5892448598922C693409E6BB /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 58924548AB946F35C90758D6 /* Cartfile */; };
@@ -132,6 +133,7 @@
 		08EEF959204B73C800386A1D /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = SOURCE_ROOT; };
 		08EEF95A204B73C800386A1D /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = SOURCE_ROOT; };
 		58924010C9A55C5D5704645A /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		5892404A37F4B7A7A3EF679D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		589240700EF7A49B5CFED7BB /* DashboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		58924082FC368C6C93CD1BD0 /* StickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerViewModel.swift; sourceTree = "<group>"; };
 		589240B7DA0BDF29338D1BAC /* DashboardCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				589246C28407AB1E65A41941 /* Cartfile.resolved */,
 				08156FE22050DFEF009A7950 /* Frameworks */,
 				5892458DEAD81FFE100EB704 /* .gitignore */,
+				5892404A37F4B7A7A3EF679D /* LICENSE */,
 			);
 			sourceTree = "<group>";
 		};
@@ -596,6 +599,7 @@
 				083ED84920575A960082E831 /* Story.storyboard in Resources */,
 				082EEDB320561C7F004F9A9F /* Sticker.storyboard in Resources */,
 				5892448598922C693409E6BB /* Cartfile in Resources */,
+				5892432E56B15B35CC221B77 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
